@@ -1,0 +1,24 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program to make a fair coin from a biased coin.",
+        "description": "Given a coin toss of a biased coin - the probability of both sides are not equal , the function will make this an unbiased coin that will have equal probability of either sides appearing.\n",
+        "example": "> When the function gets called output can be 0 [head] or 1 [tail](Both have equal probability of appearing)\n\n",
+        "solutions": [
+            {
+				"topic": "Using combination of toss",
+				"description": "To get the cases to give equal probability we use 2 unbiased toss combination.\nBoth the calls will have a 60% and 40% probability. Now the (0,1) and (1,0) will be generated in equal probability as,\n(0,1) = probability will be p(0) *p(1) = 0.6 * 0.4 = 0.24 \n(1,0) = probability will be p(1) *p(0) = 0.4 *0.6 = 0.24 \n\nThe other cases will be (0,0) or (1,1) which will have probabilities 0.6 *0.6 = 0.36 and 0.4*0.4 = 0.16 respectively.\nHence, we recall the function to get one of the above combinations to get equal probability.\n\n",
+				"algorithm": "begin procedure\n    ninitialize t1 = func1()   // call an unfair coin with probability ap\n    initialize t2 = func1();   // call an unfair coin with probability ap\n    if t1 = 0 and t2 = 1\n        return 0   // Here the probability will be  0.24 \n    if t1 = 1 and t2 = 0\n        return 1   // Here the probability will be  0.24 \n    return toss() // (1 - 0.24 - 0.24)will be the value here\n\n",
+        "explanation": "1.We create a utility function func1 which will give a biased coin with probability division determined by ap. Here we use ap = 60 which means the probability of 0 is 60% and 1 is 40% which is for an unbiased coin.\n2. We call the function twice and save the return values in variable t1 and t2. \n3. If the combination of (1,0) appears we return 0 and if (0,1) appears we return 1. The probabilities of these 2 combinations is 0.24 and equal.\n4.If the combinations (0,0) or (1,1) occurs we recall the function.\n",
+				"code": [
+					{
+						"language": "c",
+						"code": "#include <stdio.h>\n  \nint func1() // ap should not be any percent other than 50 making \n//it an unbiased coin\n      {\n\u0009    Int ap= 60;\u0009\n    int p = rand();\n        if(p <= ap)\n\u0009{ return 0}\n        else\n            {return 1}\n}\n \n// returns both 0 and 1 with equal probability \nint toss() \n{\n    int t1 = func1();\n    int t2 = func1();\n    if (t1 == 0 && t2 == 1)\n        return 0;   \n    if (t1 == 1 && t2 == 0)\n        return 1;   \n    return toss(); \n}\n  \nint main()\n{\n   x= toss();\nif (x==0)\n    printf (\"heads \");\nelse\n    printf(\u201Ctails\u201D);\n    return 0;\n}"
+                    },
+				],
+				"complexity" : ">Time Complexity is __O(1)__ with the best case scenario when the loop runs just once.\nSpace Complexity is __O(1)__ as extra variables are used.\n\n"
+            },
+        ]
+    }
+}

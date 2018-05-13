@@ -1,0 +1,32 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "1.Program to find the smallest number whose digits multiply to a given number n.\n",
+        "description": "Given a number n, find the smallest set of number that when multiplied will give n.\n",
+        "example": "> For example : \nIf the input entered was = 18 then the output has to be = 6*3 // Here answer can be 9*2 and 6*3 where the smallest set of numbers will be 6*3\nIf the input was = 9 then the output will be = 9*1 \nIf the input was = 13 then the output has to be = Not possible // as we cannot express this as a multiple of small numbers less than 10\n If the input was = 60 then the output will be 2*5*6\n",
+        "solutions": [
+            {
+				"topic": "Divide using digits 2-9\n",
+				"description": "By finding the highest factors between 2-9 we proceed to find the smallest combination of multiples.\n",
+				"algorithm": "//initialize arr[50]\nj=0\n//input = n\nif n < 10\n	print (n, 1)  // as these will be the smallest combination of numbers\nfor i = 9 till 2\n	while n % i = 0 // input is divisible by i\n 		n/=i // n= n/i\n		arr[j]=i\n		j++ \nif n > 10\n	print(“cannot be expressed”) // as this number is a prime number\nfor i = j-1 till 0  // print array in reverse order to get the smallest factor first\n	print arr[i]\n\n",
+        "explanation": "For any given number you have to split this as a multiple of numbers less than 10.\n 1.For case where n< 10 , then the output will always be 1 and n. \n2.For case when n>=10 , we need to find factors that lie between 2 and 9. We start from 9 and travel towards 2 as this will help make the smallest number set of numbers.\n3.Save these factors in an array and finally print the array in reverse order.\n\n",
+				"code": [
+					{
+						"language": "c++",
+						"code": "#include<stdio.h>\n#define MAX 50\n \n// function\nvoid findSmall(int n)\n{\n    int i, j=0;\n    int res[MAX]; // this array will store the digits of the resulting //number in the reverse order\n \n    // When the number is smaller than 10\n    if (n < 10)\n    {\n        printf(\"1,%d\", n); // The number will always be 1 and n \n        return;\n    }\n \n    // for other cases we start finding the factors starting from 9\n    for (i=9; i>1; i--)\n    {\n        // If the input is divisible by any i , then we divide it by that  //i and save what value of I it is in the array. \n        while (n%i == 0)\n        {\n            n = n/i; // This will mean i is a factor\n            res[j] = i;\n            j++;\n        }\n    }\n \n    // If n cannot be expressed by n umbers less than 9 \u2013 These means the number is a prime greater than 9. \n    if (n > 10)\n    {\n        printf(\"Cannot be expressed in this manner\"); \n        return;\n    }\n \n    // Print the result array in reverse order\n    for (i=j-1; i>=0; i--)\n        printf(\"%d  \", res[i]);\n                   \n}\n\nint main()\n{\n    findSmall(60);\n    printf(\"\\n\");\n}"
+          },
+          {
+            "language": "java",
+            "code": "import java.io.*;\n \nclass Small\n{\n    static void findSmall(int n)\n    {\n        int i, j=0;\n        int MAX = 50;\n        // this array stores the factors in reverse order\n        int[] res = new int[MAX]; \n  \n        // When the number is smaller than 10\n        if (n < 10)\n        {\n            System.out.println(n);\n            System.out.println(\"1\"); // As n and 1 are the only 2 factors\n            return;\n        }\n  \n        // For other value of n start from 9 and check till 2 to find which \n        //of these can be a factor. \n        for (i=9; i>1; i--)\n        {\n         // If the input is divisible by any i , then we divide it by that  \n         //i and save what value of i it is in the array.\n            while (n%i == 0)\n            {\n                n = n/i;\n                res[j] = i;\n                j++;\n            }\n        }\n  // If n cannot be expressed by n umbers less than 9 \n  //This means the number is a prime greater than 9.\n        if (n > 10)\n        {\n            System.out.println(\"This number cannot be expressed as above\");\n            return;\n        }\n  \n        // Print the result array in reverse order\n        for (i=j-1; i>=0; i--)\n\u0009\u0009{\n              System.out.print(res[i]);\n              System.out.println();\n\u0009\u0009}\n    }\n    public static void main (String[] args) \n    {\n        findSmall(60);\n        \n    }\n}",
+          },
+          {
+          "language": "python",
+          "code": "def findSmall(n):\n    # When the number is smaller than 10\n    if n < 10:\n        print n\n        print \"1\"\n        return\n     \n    #  For other value of n start from 9 and check till 2 to find which \n#of these can be a factor. \n    res = [] # to sort digits\n    for i in range(9,1,-1):\n         # If the input is divisible by any i , then we divide it by that    #i and save what value of I it is in the array.\n        while n % i == 0:\n            n = n / i\n            res.append(i)\n     \n  # If n cannot be expressed by n umbers less than 9 \n  # These means the number is a prime greater than 9.\n\n    if n > 10:\n        print \"This number cannot expressed as above\"\n        return\n         \n    # Print the number from result array in reverse order\n    for i in range(len(res)-1,-1,-1):\n    \u0009print res[i]\n\n# Driver Code to test above function\n\nfindSmall(60)"
+          }
+				],
+				"complexity" : ">Time Complexity is __O(n)__ as the number of times the loop runs depends on n.\nSpace Complexity __O(1)__ as there are extra variables such as res used.\n\n"
+            }
+        ]
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Efficient program to print all prime factors of a given number.",
+        "description": "Given a number, find an efficient method to output all the prime factors of that number.\n",
+        "example": ">For Example :\nIf the input number was \"12\" then the output will be \"2,2,3\"\nIf the input was 7 then output will be 7\n",
+        "solutions": [
+            {
+				"topic": "Using recursive divisibility by each prime number",
+				"description": "By checking if any prime number that is between 1 and the square root of the number is a factor we can give all the prime factors of the number. This is applicable for both odd and even numbers which are handled under 2 different cases.\n\n1.If input is even number, then print 2 which is a factor and then divide the number by 2.\n2.If the input if odd or after the first step the number will be odd. Now with a loop start dividing the number by numbers from i= 3 to till square root in increments of 2 of the base input number and wherever visible print the current value of i and continue. \n3.If n is a prime number and greater than 2 then the above process will reduce it to 1. In this condition print n if greater than 2.\n\n",
+				"algorithm": "while num % 2 =0          // To check if input is even\nprint “2”                       // 2 is a factor and hence printed\n    	num = num / 2           // divide the input by 2\n// at this point the number will be odd\nfor i = 3 till squareroot(num) ,increment by 2 \nwhile num % i = 0\n 		 print (i)         // i is a prime factor of the input
+  num = num / i\n// by this point the condition is to handle case when number input is a prime greater than 2\nif num > 2\nprint num                     // at this point n will be a prime factor\n\n",
+				"code": [
+					{
+						"language": "c",
+						"code": "# include <stdio.h>\n# include <math.h>\nvoid prime(int num)\n{\n    // Start by printing the number of 2s that divide n. This is when n is an even number \n    while (num%2 == 0)\n    {\n        printf(\"%d \", 2); // Indicates 2 is a prime factor\n        num = num/2;\n    }\n    // num must be odd at this point.  \n    for (int i = 3; i <= sqrt(num); i = i+2) // As n is odd from here we can skip dividing by even numbers\n    {\n        // if num is divisible by i then print i and divide number further\n        while (num%i == 0)\n        {\n            printf(\"%d \", i);\n            num = num/i;\n        }\n    }\n    // This condition will handle if number is a prime number greater than 2\n    if (num > 2)\n        printf (\"%d \", num);\n}\n \nint main()\n{\n    int n = 56;\n    prime(n);\n    return 0;\n}"
+          },
+          {
+            "language": "java",
+            "code": "import java.io.*;\nimport java.lang.Math;\n \nclass PrimeFactors\n{\n    public static void primeFactors(int n)\n    {\n        while (n%2==0)\n        {\n            System.out.print(2 + \" \"); // Will print 2 is one of the prime factors\n            n /= 2;\n        }\n \n        // n will be an odd number here. hence we skip 2 numbers as we do not need to divide by even numbers \n        for (int p = 3; p <= Math.sqrt(n); p=p+ 2)\n        {\n            while (n%p == 0)\n            {\n                System.out.print(p + \" \"); // p will be the prime factor of the number\n                n = n/p;\n            }\n        // When n becomes a prime number that is greater than 2 then it gets printed here\n        if (n > 2)\n            System.out.print(n);\n    }\n}"
+          },
+          {
+          "language": "c#",
+          "code": "using System;\nnamespace prime\n{\npublic class GFG\n{     \n    public static void prime(int m)\n    {\n        // Start by printing the total 2s in the prime factors of m\n        while (m % 2 == 0)\n        {\n            Console.Write(2 + \" \");   // this menas 2 is a prime factor of the number\n            n /= 2;\n        }\n \n        // m becomes an odd number by this point and hence you can skip all even numbers as factors\n        for (int i = 3; i <= Math.Sqrt(m); i+= 2)\n        {\n            while (m % i == 0)\n            {\n                Console.Write(i + \" \");// i is a factor of the number m\n                m /= i;\n            }\n        }\n \n        // This condition handles is m becomes a prime number but greater than 2\n        if (m > 2)\n            Console.Write(m);\n    }\n     \n    // Driver Code\n    public static void Main()\n    {\n        int n = 45;\n        prime(n);\n    }\n \n} \n}"
+          },
+          {
+          "language": "python",
+          "code": "import math\ndef prime(number):\n    #Start by printing the 2s in the number. This is applicable for even numbers\n    while number % 2 == 0:\n        print 2, #as 2 will be a factor\n        number = number / 2\n         \n    # number becomes odd by this point and hence we can skip even numbers to check for prime factors\n    for i in range(3,int(math.sqrt(number))+1,2):\n         \n        while number % i== 0:\n            print i,   # is will a prime factor of the number\n            number = number / i\n             \n    # This Condition comes up if number is a prime number greater than 2\n    if number > 2:\n        print number\n \nn = 390\nprime(n)\n "
+          }
+				],
+				"complexity" : ">The time complexity is __O(n)__ as the loop running time depends on the input n.\nThe space complexity is __O(1)__ as no extra variable are being used.\n"
+            }
+        ]
+    }
+}

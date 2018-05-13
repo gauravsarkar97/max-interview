@@ -1,0 +1,32 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program to check divisibility by 7 (Without using Modulus function or float)\n",
+        "description": "Given a number n, find if it is divisible by 7 without using the modulus(%) operator and float.\n",
+        "example": "> For example : If the input number if 49 then the output will be = \"YES\"\nIf the input number if 9 then the output will be = \"NO\"\n",
+        "solutions": [
+            {
+				"topic": "Using recursive subtraction",
+				"description": "To find if a given number is divisible by 7 when it can be expressed in the form \"10x + y\" is by checking if -x+2y is divisible by 7 .\nSo to check if 35 is divisible which is \"10 * 3 + 5\" we need to check if  \"2*5 - 3 = 7\" is divisible by 7 \n",
+				"algorithm": "procedure Divisible\nif input = 0 or input = 7\n 	then return 1   // This is divisible\nif input is less than 10\n	then return 0 // Nay number other than 7 or 0 is not divisible \nfor all other cases \nreturn Divisible( input/ 10 – 2 *( input – input /`10 * 10)) // recursively call the function to find out if 2x-y is divisible by 7 \n\n",
+        "explanation": "1.Check if the number is 0 or 7 as this is divisible. If it is any other 1 digit number then it is not divisible.\n2.Now we recursively call the function by applying the following formula on the input.\n3.How does the formula work ?\n Lets take input as 35\nWhen you multiply 10x+y by 2 it is now 20x+y which can be taken as  21*x – x + 2* y.\nNow 21 is a multiple of 7 and hence we eliminate this value, Which means 2y – x needs to be divisible by 7\n\n"
+				"code": [
+					{
+						"language": "c++",
+						"code": "#include <stdio.h>\n \nint Divisible( int num )\n{\n    // Convert negative number to positive\n    if( num < 0 )\n        return Divisible( -num );\n \n    // The cases when the number is 0 or 7 \n    if( num == 0 || num == 7 )\n        return 1;\n    if( num < 10 )//If the input is any one digit number other than 0 and 7 \n        return 0; // hence it is not divisible\n \n    // recurring function call for input 2y-x ( num / 10 - 2 * num % 10 ) \n    return Divisible( num / 10 - 2 * ( num - num / 10 * 10 ) );\n}\n\nint main()\n{\n    int num = 35;\n    if( Divisible(num ) )\n        printf( \"The input number is divisible by 7\" );\n    else\n        printf( \"The input number is not divisible by 7\" );\n    return 0;\n}"
+          },
+          {
+            "language": "java",
+            "code": "import java.io.*;\n \nclass GFG \n{\n    // Function \n    static boolean Divisible7(int num)\n    {\n        // case when number is negative\n        if( num < 0 )\n            return Divisible7( -num );\n  \n        // Case when the number is equal to 0 or 7 as they are divisible\n        if( num == 0 || num == 7 )\n            return true;\n\u0009 // Case when the number is 1 digit and not 0 or 7 . It is not divisible\n        if( num < 10 )\n            return false;\n  \n        // call function recursively with 2y-x(num / 10 - 2 * num % 10 ) \n        return Divisible7( num / 10 - 2 * ( num - num / 10 * 10 ) );\n    }\n     \n    // Driver program\n    public static void main (String[] args) \n    {\n        int num = 35;\n        if(Divisible7(num))\n            System.out.println(\"this number is Divisible by 7 \");\n        else\n            System.out.println(\"This number is Not Divisible by 7\");\n    }\n}"
+          },
+        {
+          "language": "python",
+          "code": "def Divisible7(num) :\n     \n    # A case when input is a negative number\n    if num < 0 :\n        return Divisible7( -num )# this will make this positive\n \n    # Cases when input is 0 or 7 \n    if( num == 0 or num == 7 ) :\n        return True # this will be divisible by 7 \n     \n # Any other 1 digit number other than 0 or 7 is not divisible\n    if( num < 10 ) : \n        return False\n         \n    # call the same function recursively for 2y-x(num / 10 - 2 * num % 10 ) \n    return Divisible7( num / 10 - 2 * ( num - num / 10 * 10 ) )"
+        }
+				],
+				"complexity" : ">Time Complexity is __O(1)__ as the loop runs only twice.\nSpace Complexity is __O(1)__ as no extra variable is used.\n\n"
+            }
+        ]
+    }
+}

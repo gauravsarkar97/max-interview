@@ -1,0 +1,28 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program to check if a number is a Krishnamurthy number or not.",
+        "description": "What is a Krishnamurthy number ?\nIt is a number whose sum of factorials of digits is equal to the number itself.",
+        "example": "> For example : \"145\" is a Krishnamurthy number.\nExplanation:\n\n1! + 4! + 5! = 1 + 24 + 120 = 145\nSo, 145 is a Krishnamurthy number.\nwhere \"n! = n * (n-1) * (n-2) * ...... *1\nThus,  4! = 4 * 3 * 2 * 1\"\n",
+        "solutions": [
+            {
+				"topic": "Simple Solution",
+				"description": "We extract each digit and compute the factorial of that number and add it to another variable.\nWe do this step for the number of times as there are digits in the number.\nFinally we check if the sum is equal to the original number.",
+				"algorithm": "procedure isKrishna(n)\ninitialize sum = 0\ninitialize temp = n               //temporary variable to store value of n\ndo\nsum = sum + factorial(temp % 10)   //(temp%10) extracts last digit\ntemp = temp/10                  //removes the last digit\nwhile temp != 0\nif sum = n\nprint “Krishnamurthy”\nend procedure\n\n",
+        "explanation": "Here, factorial() is a function that finds out the factorial of any number which is passed as argument to it.\n\nThe worst case time complexity of isKrishna() function is __O(digits_in_n)__, as the while loop runs for the number of times as there are number of digits in the input number n.\nThis function calls the factorial() function which takes O(N) time to compute the factorial of any number.",
+				"code": [
+					{
+						"language": "c++",
+						"code": "#include<bits/stdc++.h>\nusing namespace std;\n\nint factorial(int n)\n{\n    int fact = 1;\n    while (n != 0)\n    {\n        fact = fact*n;\n        n--;\n    }\n    return fact;\n}\n\nvoid isKrishna(int n)\n{\n    int sum = 0;\n\n    int temp = n;\n    while (temp != 0)\n    {\n        sum += factorial(temp%10);\n        temp = temp/10;\n    }\n    // Check if number is krishnamurthy\n    if(sum == n)\n        cout<<\"It is a Krishnamurthy number \";\n    else\n        cout<<\"It is NOT a Krishnamurthy number \";\n}\n\nint main()\n{\n    int n;\n    cout<<\"Enter a number : \";\n    cin>>n;\n    isKrishna(n);\n    return 0;\n}"
+          },
+          {
+            "language": "java",
+            "code": "import java.util.*;\nimport java.io.*;\n \nclass Krishnamurthy\n{\n    static int factorial(int n)\n    {\n        int fact = 1;\n        while (n != 0)\n        {\n            fact = fact*n;\n            n--;\n        }\n        return fact;\n    }\n \n    static void isKrishna(int n)\n    {\n        int sum = 0;\n        int temp = n;\n        while (temp != 0)\n        {\n            sum += factorial(temp%10);\n            temp = temp/10;\n        }\n        if (sum == n)\n           System.out.println(\"It is a Krishnamurthy number\");\n        else\n            System.out.println(\"It is NOT a Krishnamurthy number\");\n    }\n    public static void main(String[] args)\n    {\n        int n = 145;\n        isKrishna(n);\n    }\n}"
+          }
+				],
+				"complexity" : ">The worst case will be O(digits_in_n * N), where N is the largest digit in the entered number. Of course we can decrease the time to logarithmic time by using recursion to compute the factorial of the number.\nWe can simply incorporate this function in place of the given factorial() function if we want to find the factorial in logarithmic time.The rest of the code remains same.\n\nint factorial(int n)\n{\n   if (n >= 1)\n      return n*factorial(n-1);\n   else\n      return 1;\n}\n\nThe space complexity is O(1).\n"
+            }
+        ]
+    }
+}

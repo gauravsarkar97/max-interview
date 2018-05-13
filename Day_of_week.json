@@ -1,0 +1,36 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program to find the day of the week for a given date.",
+        "description": "Given a date of any year, the program has to give which day of the week it is.\n",
+        "example": "> For example :\n If the input date was \"11-4-2018\" then the output will be \"Wednesday\"\n",
+        "solutions": [
+            {
+				"topic": "Using Tomohiko Sakamoto's Algorithm",
+				"description": "Using the formula to calculate the number it can be related to which day of the week the number relates to.\n",
+				"algorithm": "function(date, month, year)\n    initialize static t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 }\n        if month < 3\n    year = year - 1\n    return ( year + year/4 - year/100 + year/400 + t[month-1] + date) % 7 \n\n",
+        "explanation": "1.The formula used here can be explained. This basically contributes to the number of shifts from point Jan 1st 1 AD which was a Monday according to Gregorian calendar you add for a given date to get the day.\n 2. Year = year - 1, if \"(month < 3)\" is a way of creating a virtual year that will start from March 1st and end with February 28th or 29th and this way the extra day gets added to end of the year or end of previous year. This trick is used to simplify the expression as our year now starts from March and hence the first two month should be counted in the previous years. \n3.A normal year has 365 days which is 52 weeks plus 1 day. The year term used in the algorithm adds this 1 day shift that each year needs. (Only for dates from March month)\n4.To add the extra day in every 4 years which will be a leap year we use the virtual days and add the year/4 factor to calculate how many leap years are present in these years. (We use floor function for rounding off to integers here)\n5.Now as every 100 years is not a leap year we delete the term y/100 from the formula. And similarly once in every 400 years there is one extra day to add which we use year/400 for. \n6.Now to add date of the month and an offset from a table t[] which will carry the month code for each month. The month code basically contains how many days of the week shift each month has from the previous month`s first day.\n\nWe also subtract 1 from each month other than January and February to solve the leap year problem as the extra day gets added only by the end of February. That is how we arrive at the t[] array with these values. \n Eg. If January started on Monday , it has 31 days which is 7*4 +3 and hence February will start 3 days after that on Thursday.\n\n Finally we take mod 7 so as to take into account a week is 7 days long to find which day of the week it is.\n",
+				"code": [
+					{
+						"language": "c++",
+						"code": "#include<stdio.h>\n \nint dayofweek(int date, int month, int year)\n{\n    static int t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };\n        if(month<3)\n    year -= 1;\n    return ( year + year/4 - year/100 + year/400 + t[month-1] + date) % 7;\n}\n \nint main()\n{\n    int day = dayofweek(11, 4, 2018);\n    char *DOW[] = { \"Sunday\",\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\",\"Saturday\" };\n    printf(\"%d -- \",day);\n    printf(\"%s\",DOW[day]);\n    return 0;\n}"
+          },
+          {
+            "language": "c#",
+            "code": "using System;\n \nclass GFG {\n     \n    static int dayofdweek(int day, int month, int year)\n    {\n        int []t = { 0, 3, 2, 5, 0, 3, 5,  1, 4, 6, 2, 4 };\n        year -= month < 3 ? month : 0;\n         \n        return ( year + year/4 - year/100 + year/400 \n                         + t[month-1] + day) % 7;\n    }\n   }"
+          },
+          {
+            "language": "java",
+            "code": "class GFG\n{\nstatic int dayofweek(int day, int month, int year)\n{\n    int t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };\n    year -= month < 3? month:0;\n    return ( year + year/4 - year/100 + year/400 + t[month-1] + day) % 7;\n}\n\npublic static void main(String arg[])\n{\n    int day = dayofweek(30, 8, 2010);\n    String DOM[] = {\"\", \"Monday\", \"Tuesday\", \"Wednesday\",\n        \"Thursday\", \"Friday\", \"Saturday\", \"Sunday\"};\n        System.out.print(DOM[day]);\n    System.out.print(day);\n}\n}"
+          },
+          {
+          "language": "python",
+          "code": "def dayofweek(day, month, year):\n    t = [ 0, 3, 2, 5, 0, 3,\n          5, 1, 4, 6, 2, 4 ]\n    year -= month < 3\n    return (( year + int(year / 4) - int(year / 100)\n             + int(year / 400) + t[month - 1] + day) % 7)\n \n# Driver Code\nday = dayofweek(30, 8, 2010)\ndom = ('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday')\nprint(dom[day])\nprint(day)"
+          }
+				],
+				"complexity" : ">Time Complexity is __O(1)__ as the time taken will be only for running the function once.\nSpace Complexity is __O(1)__ as there are extra spaces used. \n"
+            }
+        ]
+    }
+}

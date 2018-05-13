@@ -1,0 +1,32 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program to print all permutations of a given string\n",
+        "description": "Given a string consisting of distinct characters, find all the possible permutations of the characters of the strings. \n",
+        "example": "> For example : If the input is \"gap\" then the output will be \"{pag , agp, apg, gpa, pga}\"\n",
+        "solutions": [
+            {
+				"topic": "Using swap on each character",
+				"description": "Starting with the first character we swap one character at a time. For each such swap we move ahead making similar sway with other characters. \n",
+				"algorithm": "//sc = start character position \n//n = length of input-1\nprocedure Permutation (input , sc , n)\nint x\nif sc = n   //This case is when there is only 1 character\n	print input\nelse\n	for x = sc till n \n		swap(input+sc , input+x)\n		Permutation(input, sc+1, n)\n		swap(input+sc , input+x) // backtracking the characters \n\n",
+        "explanation": "1.Create a swap() function for 2 inputs for the function.\n2.The main algorithm function will contain a loop. If there is only 1 character there is only 1 possibility.\n3.For other cases start from the first character and we keep it fixed. Now we recursively call the function till the last 2 characters are reached which are then swapped. Now we backtrack the same for all previous characters.\n\n    Algorithm working \n1.  G  A  P\n      First swap G with G \n  2. G  A  P    // Now G is fixed \n        Now Swap A with A                                                                                 Now Swap A with P\n3. G  A  P   //     Now GA is fixed                                                          3.  G   P   A // Now GP is fixed\n 	The same steps repeat for Swapping G with A and then G with P In the first step\n\n",
+				"code": [
+					{
+						"language": "c++",
+						"code": "#include <stdio.h>\n#include <string.h>\n \nvoid swap(char *x, char *y)\n{\n    char temp;\n    temp = *x;\n    *x = *y;\n    *y = temp;\n}\n \n/* Function to print permutations of string */\nvoid permutation(char *a, int sc, int n)\n{\n   int i;\n   if (sc == n)\n     printf(\"%s\\n\", a);\n   else\n   {\n       for (i = sc; i <= n; i++)\n       {\n          swap((a+sc), (a+i));// This will help with the fixed characters\n          permute(a, sc+1, n);  //Starts with Characters after the fixed ones\n          swap((a+sc), (a+i));  //backtrack the permutation from last 2 //characters \n       }\n   }\n}\n \nint main()\n{\n    char str[] = \"GAP\";\n    int len = strlen(str);\n    permute(str, 0, len-1);\n    return 0;\n}"
+          },
+          {
+            "language": "java",
+            "code": "public class Permutation\n{\n    public static void main(String[] args)\n    {\n        String str = \"GAP\";\n        int n = str.length();\n        Permutation permutation = new Permutation();\n        permutation.permut(str, 0, n-1);\n    }\n \n    /* permutation function */\n    private void permut(String str, int sc, int n)\n    {\n        if (sc == n)\n            System.out.println(str);\n        else\n        {\n            for (int i = sc; i <= n; i++)\n            {\n                str = swap(str,sc,i);\n                permut(str, sc+1, n);\n                str = swap(str,sc,i);\n            }\n        }\n    }\n \n    /* Swap Characters at position */\n    public String swap(String a, int i, int j)\n    {\n        char temp;\n        char[] charArray = a.toCharArray();\n        temp = charArray[i] ;\n        charArray[i] = charArray[j];\n        charArray[j] = temp;\n        return String.valueOf(charArray);\n    }\n}"
+          },
+        {
+          "language": "python",
+          "code": "def stringjoin(List):\n    return ''.join(List) #This helps print the input list as a string\n \n# Function to print permutations of string\ndef permute(a, sc, n):\n    if sc==n:\n        print stringjoin(a)\n    else:\n        for i in xrange(sc,n+1):\n            a[sc], a[i] = a[i], a[sc] # For the fixed characters\n            permute(a, sc+1, n) # recursively call function to swap the \n# other characters\n            a[sc], a[i] = a[i], a[sc] # This backtracks to the last characters that will swap \n \n# Driver program to test the above function\ninputst  = \"GAP\"\nn = len(inputst)\na = list(inputst)\npermute(a, 0, n-1)"
+        }
+				],
+				"complexity" : ">Time Complexity is __O(n*n!)__ as the total permutations possible is n! where n is the number of characters and O(n) time to print each of them.\nSpace Complexity is __O(1)__ which is because no extra variable is used.\n\n"
+            }
+        ]
+    }
+}

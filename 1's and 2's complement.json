@@ -1,0 +1,25 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program to find 1's and 2's complement of a binary number.",
+        "description": "Given an input binary number, we have to print its 1’s and 2’s complements.\n",
+        "explanation": "1’s complement of a binary number is obtained by flipping or toggling all bits in it, i.e.,changing the 1 bit to 0 and the 0 bit to 1.\n\n2’s complement of a binary number is obtained by adding 1 to the 1’s complement of the binary number.",
+        "example": "> 1's complement of \"0111\" is \"1000\" and 2's complement of \"0111\" is  \"1001\"\n",
+        "solutions": [
+            {
+				"topic": "Basic solution",
+				"description": "For one’s complement, we simply need to flip/interchange all bits.\n
+For 2’s complement, firstly we need to find 1’s complement. We then traverse the 1’s complement starting from LSB(least significant bit) and look for 0. We flip all 1’s to 0's until we find a 0. Finally, we flip the found 0.For example, 2’s complement of “01000” is “11000”(Note that we first find one’s complement of 01000 as 10111).If there are all 1’s (in 1’s complement), we add an extra 1 in the string.",
+				"algorithm": "initialize n = bin.length()\ninitialize string one = \"NULL\"\ninitialize string two = \"NULL\"\nfor i = 0 to n do:        //to find 1's complement\n    one += flip(bin[i])   //flip() is a fn to flip the bits\nend for\ntwo = one\n    for i = n - 1 down till 0 do:\n        if one[i] == '1'\n            two[i] = '0'\n        else\n            two[i] = '1'\n            break\n    end for\n    if (i == -1)     //if all are 1\n        two = '1' + two\n",
+				"code": [
+					{
+						"language": "c++",
+						"code": "#include <bits/stdc++.h>\nusing namespace std;\n \nvoid func(string bin)\n{\n    int n = bin.length();\n    int i;\n    string one, two;\n    one = \"\";\n    two = \"\";\n    //  for ones complement flip every bit\n    for (i = 0; i < n; i++)\n        one += flip(bin[i]);\n    //for 2's complement\n    two = one;\n    for (i = n - 1; i >= 0; i--)\n    {\n        if (one[i] == '1')\n            two[i] = '0';\n        else\n        {\n            two[i] = '1';\n            break;\n        }\n    }\n //if all are 1\n    if (i == -1)\n        twos = '1' + twos;\n \n    cout << \"1's complement is \" << ones << endl;\n    cout << \"2's complement is \" << twos << endl;\n}\n \nchar flip(char c) //function to flip the bits\n{\n   if(c == 0)\n        return 1;\n   else\n        return 0;\n}\n\nint main()\n{\n    string bin = \"1101010100\";\n    func(bin);\n    return 0;\n}"
+                    },
+				],
+				"complexity" : ">The time complexity is __O(N)__ where N is the number of bits in the input number.\n\n>The space complexity is __O(N)__as we need to use extra space for storing the 1's and 2's complement. "
+            },
+        ]
+    }
+}

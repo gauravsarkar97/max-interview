@@ -1,0 +1,27 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Checking for a Pangram",
+        "description": "You are given a String S. Check whether the given string S is a Pangram or not. The Sentence which contains all the letters in the English Alphabet is known as Pangram.\n",
+        "example": "> For Example:\n1. \"The quick brown fox jumps over the lazy dog\" is a Pangram since it contains all the alphabets from 'a' to 'z'.\n2. \"The quick brown fox jumps over the dog\" is not a Pangram as 'l', 'z' and 'y' are missing.\n",
+        "solutions": [
+            {
+				"topic": "Method : Using boolean array\n",
+				"description": "The idea is to use a boolean array check[]. When an alphabet is encountered the respetive position of the alphabet in check[] is made true, while iterating through the string. Both the lowercase and uppercase alphabets are considered same. After the string, we iterate through the check[] if any index is false, the string is not a Pangram.\n",
+				"algorithm": "#let String be\nS= \"The quick brown fox jumps over the lazy dog\"\n#iterating through the sentence\nwhile(i<S.length())\n#finding index of the alphabet if uppercase\nif ('A' <= str[i] && str[i] <= 'Z')\nindex = str[i] - 'A';\nend-if\n#finding index of the alphabet if lowercase\nelse if('a' <= str[i] && str[i] <= 'z')\nindex = str[i] - 'a';\nend-if\n#marking true for the alphabet present\ncheck[index]=true\nend-while\n#iterating through the check[]\nwhile(i<26)\nif(check[i]==false)\nreturn false\nend-if\nend-while\nreturn true\n",
+				"code": [
+					{
+						"language": "c",
+						"code": "#include<bits/stdc++.h>\nusing namespace std;\n// Returns true if the string is pangram else false\nbool checkPangram (string &str)\n{\n//a hash table to check the alphabets present in the string\nvector<bool> check(26, false);\n// For indexing in check[]\nint index;\n// Traverse all alphabets\nfor (int i=0; i<str.length(); i++)\n{\n// finding index of the alphabet if uppercase\nif ('A' <= str[i] && str[i] <= 'Z')\nindex = str[i] - 'A';\n// finding index of the alphabet if lowercase\nelse if('a' <= str[i] && str[i] <= 'z')\nindex = str[i] - 'a';\n// check current alphabet\ncheck[index] = true;\n}\n// Return false if any alphabet is unchecked\nfor (int i=0; i<=25; i++)\nif (check[i] == false)\nreturn (false);\n// If all alphabets were present\nreturn (true);\n}\nint main()\n{\nstring str = \"The quick brown fox jumps over the\"\n\" lazy dog\";\nif (checkPangram(str) == true)\nprintf (\"'%s' is a pangram\", str.c_str());\nelse\nprintf (\"'%s' is not a pangram\", str.c_str());\nreturn(0);\n}"
+                    },
+          {
+            "language": "java",
+            "code": "class Pangram{\nstatic boolean checkPangram (String str){\n//an array to check the alphabets present in the string\nboolean check[]= new boolean[26];\n// For indexing in check[]\nint index=0;\n// Traverse all alphabets\nfor (int i=0; i<str.length(); i++)\n{\n// finding index of the alphabet if uppercase\nif ('A' <= str.charAt(i) && str.charAt(i) <= 'Z')\nindex = str.charAt(i) - 'A';\n// finding index of the alphabet if lowercase\nelse if('a' <= str.charAt(i) && str.charAt(i) <= 'z')\nindex = str.charAt(i) - 'a';\n// check current alphabet\ncheck[index] = true;\n}\n// Return false if any alphabet is unmarked\nfor (int i=0; i<=25; i++)\nif (check[i] == false)\nreturn (false);\n// If all alphabets were present\nreturn (true);\n}\npublic static void main(String[] args) {\nString str = \"The quick brown fox jumps over the lazy dog\";\nif (checkPangram(str) == true)\nSystem.out.println(str+\" is a pangram\");\nelse\nSystem.out.println(str+\" is not a pangram\");\n}\n}"
+          }
+				],
+				"complexity" : ">Time-Complexity: __O(n)__ which depends on length of the string.\nSpace-Complexity: __O(1)__ as no extra space used\n"
+            }
+        ]
+    }
+}

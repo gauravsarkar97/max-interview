@@ -1,0 +1,28 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Problem to find the next greater number with same set of digits.\n",
+        "description": "Given a number n. We need to find which is the greatest number that can be formed with the same set of digits.\n",
+        "example": "> For example : \nIf the input was \"5743\" then the output would be \"7543\"\nIf input was \"109\" then output should be \"910\"\n",
+        "solutions": [
+            {
+				"topic": "Check and arrange, starting from highest",
+				"description": "The most efficient approach for the same will be to make an array that will contain the count of each digit between 0-9 in the input. Then transverse the array from indexes 9-0 and get then obtain the largest possible number.\n",
+				"algorithm": "//Input num\ninitialize count[10] = {0} // An array of size 10 \nstring a = convert (num)\nfor i = 0 to a.length\n	count[a[i]-‘0’]++             // to increase count of each character of the input string\nresult = 0  // this will be the final result \nmultiplier = 1\nfor i=0 till 9\n	 while count[i] > 0 do:\n		result = result + ( i * multiplier)\n		count[i]--\n		multiplier = multiplier * 10\nreturn result\n\n",
+        "explanation": "1.Convert the input to a string.\n2.Initialize array count that will count the frequency of each digit between 0 and 9. This is done by traversing through the array using a loop.\n3.For i between 0 and 9 we start assigning the smallest number between 0 to 9 which has count > 0 (present In the input) to the units place. Similar move to tens place and ahead.\n\n",
+				"code": [
+					{
+						"language": "c++",
+						"code": "#include <bits/stdc++.h>\nusing namespace std;\n \nint printMax(int num)\n{\n    //Array that will store count of each digit from the input\n    int count[10] = {0}; // Count for digits from 0-9\n \n    // Converts given number to string\n    string inpnum = to_string(num);\n \n    // Updating the count for each digit in array\n    for (int i=0; i<inpnum.length(); i++)\n        count[inpnum[i]-'0']++;\n \n    // result will store the final number\n    int maxno = 0, multiplier = 1;\n \n    //To calculate the maximum number\n    for (int i = 0; i <= 9; i++)\n    {\n        while (count[i] > 0)\n        {\n            maxno = maxno + (i * multiplier);\n            count[i]--;\n            multiplier = multiplier * 10;\n        }\n    }\n    return maxno;\n}"
+          },
+          {
+            "language": "java",
+            "code": "public class GFG\n{\n    static int printMax(int num) \n    {\n        //Array that will store count of each digit from the input\n        int count[] = new int[10]; // Take count of each digit\n         \n        // Converting given number to string\n        String istr = Integer.toString(num);\n         \n        // Updating the count array\n        for(int i=0; i < istr.length(); i++)\n            count[istr.charAt(i)-'0']++;\n         \n        // maxnum will carry the maximum possible number\n        int maxnum = 0, multiplier = 1;\n         \n        // To count the maximum occurrence of each digit\n        for (int i = 0; i <= 9; i++)\n        {\n            while (count[i] > 0)\n            {\n                maxnum = maxnum + (i * multiplier);\n                count[i]--;\n                multiplier = multiplier * 10;\n            }\n        }\n      \n        return maxnum;\n    }\n    public static void main(String[] args) \n    {\n        int num = 7603;\n        System.out.println(printMax(num));\n    }\n}\n"
+          },
+				],
+				"complexity" : ">Time Complexity is __O(n)__ as it depends on the total number of digits n.\nSpace Complexity is __O(1)__ as there are no extra variables. \n\n"
+            }
+        ]
+    }
+}

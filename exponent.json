@@ -1,0 +1,35 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Efficient program to calculate e^x",
+        "description": "e^x is an exponential function that can be expressed using the Taylor series. It is usually expressed as e^x = 1+ x/1! +((x^2)/2!)+ …. n-th value\n\nNow we find the efficient way to calculate the value of this series given the value till which the approximation(N) will be considered\n",
+        "example": ">For Example :\nIf \"n = 3\" then the series summation should be till \n \"1 + x/1! +((x^2)/2!)\"\n",
+        "solutions": [
+            {
+				"topic": "By using a simple loop",
+				"description": "The above expression can be rewritten as \ne^x = 1+(x/1)(1+(x/2) (1+(x/3) (…….))\nThis expression can be used to carry out the summation. \n\n1.The value of x [ which will be the power ] is taken and the Nth term till which the sum should be done is taken.\n 2.Sum will initially be 1 as in absence of any other term which is the case when N is 1 the value of the Taylor series will be 1.]n3.In a loop recursively add the expression 1 + x* sum/I which is the Nth term expression of the Taylor series till we reach N\n",
+				"algorithm": "float x = 1.0\nfloat sum = 1.0\nint n = 10\nfor i = n - 1 till 1\n     sum = 1+ x * sum / i         // This will calculate sum of the series till the Nth term.\n\n",
+				"code": [
+					{
+						"language": "c",
+						"code": "#include <stdio.h>\n \nfloat exponential(int num, float x)\n{\n    float sum = 1.0;        // initialize sum of series which will be applicable when num will be 1\n \n    for (int i = num - 1; i > 0; --i )\n        sum = 1 + x * sum / i;\n \n    return sum;\n}\n \nint main()\n{\n    int num = 4;\n    float x = 1.0;\n    printf(\" The summation for e^x = %f\", exponential(num, x));\n    return 0;\n}"
+          },
+          {
+            "language": "java",
+            "code": "import java.io.*;\n \nclass Expo\n{\n    static float exponential(int num, float x)\n    {\n        // initialize sum of series\n        float sum = 1; \n  \n        for (int i = num - 1; i > 0; --i )\n            sum = 1 + x * sum / i;\n        return sum;\n    }\n    public static void main (String[] args) \n    {\n        int num = 10;\n        float x = 2;\n        System.out.println(\"e^x = \"+exponential(n,x));\n    }\n}"
+          },
+          {
+          "language": "c#",
+          "code": "using System;\n \nclass Expo\n{\n    static float exponential(int num, float x)\n    {\n        // initialize sum of series when the value of num will be 1\n        float sum = 1; \n \n        for (int i = num - 1; i > 0; --i )\n            sum = 1 + x * sum / i;\n        return sum;\n    }\n    public static void Main () \n    {\n        int num = 10;\n        float x = 2.5;\n        Console.Write(\" the summation till e^x = \" + exponential(n, x));\n    }\n}"
+          },
+          {
+          "language": "python",
+          "code": "def exponential(num, x):\n \n    # Loop for calculation of the sum\n    sum = 1.0\n    for i in range(num, 0, -1):\n        sum = 1 + x * sum / i\n    print (\" the summation till e^x =\", sum)\n \n# Driver program \nnum = 10\nx = 2.5\nexponential(n, x)"
+          }
+				],
+				"complexity" : ">The time complexity is __O(n)__ as the number of times the loop runs depends on number of terms of the series.\nThe space complexity is __O(1)__ as the only extra variable used is sum.\n"
+            }
+        ]
+    }
+}

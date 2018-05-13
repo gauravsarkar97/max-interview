@@ -1,0 +1,62 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Problem to find smallest of three integers without using comparison operators ",
+        "description": "Given three numbers a, b, c. We are to find the smallest of the three numbers.",
+        "example": "> For example : If the inputs are 2, 3, 5 then the output will be 2.\n",
+        "solutions": [
+            {
+				"topic": "Using Repetitive subtraction :\n",
+				"description": "Subtract all three numbers to find what number reaches 0 first.\n",
+				"algorithm": "procedure smallest(a ,b c)\ninitialize s = 0\n while a and b and c is true\na = a - 1 \nb = b - 1\nc = c - 1\ns = s + 1\nreturn s  // which will be the smallest number \n",
+        "explanation": "1.Using a loop subtract 1 from each number as long as all number are greater than 0 and increase value of s from 0.\nIf any 1 reaches 0 first then the loop stops and s will contain the smallest number.\n\n",
+				"code": [
+					{
+						"language": "c++",
+						"code": "#include<stdio.h>\n \nint smallest(int a, int b, int c)\n{\n  int s = 0;\n  while ( a && b && c )\n  {\n      a--;  b--; c--; s++;  // This helps to find which of the numbers become 0 first and hence will be the smallest.\n  }\n  return s;\n}\nint main()\n{\nint a=2,b=5,c=8;\nint small=smallest(a,b,c);\nprintf(\"Smallest number is %d\",small);\nreturn 0;\n}"
+          },
+          {
+          "language": "c#",
+          "code": "using System;\n \nclass GFG\n{\n    static int smallest(int a, int b, int c)\n    {\n        int s = 0;\n         \n        while ( a != 0 && b != 0 && c != 0 )\n        {\n            a--; b--; c--; s++;\n        }\n        return s;\n    }"
+          },
+          {
+            "language": "java",
+            "code": "import java.io.*;\nclass GFG{\n     \n    static int smal(int a, int b, int c)\n    {\n        int s = 0;\n         \n        while ( a != 0 && b != 0 && c != 0 )\n        {\n            a--; b--; c--; s++;\n        }\n         \n        return s;\n    }\n     \n    public static void main(String[] args)\n    {\n        int x = 54, y = 10, z = 4;\n         \n        System.out.printf(\"The smallest of the 3 numbers is\" +\n              \" numbers is %d\", smal(x, y, z));\n    }\n}"
+          },
+          {
+          "language": "python",
+          "code": "def smal(a, b, c):\n    s = 0\n     \n    while ( a and b and c ):\n        a=a-1\n        b=b-1\n        c=c-1\n        s=s+1\n \n    return s\n \n# Driver Code\nx = 83\ny = 15\nz = 9\nprint(\"The smallest of the three numbers if \",\n       smallest(x, y, z))"
+          }
+				],
+				"complexity" : ">Time Complexity __O(min(a,b,c))__ depending on which of the three numbers is the smallest number.\nSpace Complexity is __O(1)__ as an extra variable is used.\n"
+            },
+            {
+            "topic": "Method 2: Using Bit-wise operations\n",
+            "description": "This method will also be applicable for negative numbers. We operate 2 numbers and extend the same to 3 numbers.\n\n",
+            "algorithm": "Function(a,b) // Will find minimum of 2 numbers \n            return b + (( a-b) & ((a-b) >>(sizeof(int)*CHAR_BIT -1))) // Explained below\n\n",
+            "explanation": "1.This formula finds which of a and b is minimum. The above formula evaluates as this. \n2.Here we shift the difference of x and y by 31(considering size of integer is 32). If (x-y) is less than 0 then this shift will give 1. Similarly if x-y is greater or equal to 0 in that case the shift will give 0. \n3.So, x >= y  is the case when y+(x-y) & 0 will give y as minimum. \n4.If x < y here x is minimum as y+(x-y) &1 will give x.\n5.Now expand the logic to 3 numbers by running the same function for 2 parameters at a time.\n",
+            "code": [
+            {
+            "language": "c",
+            "code": "#include<stdio.h>\n#define CHAR_BIT 8\n \n/*to find the smallest of 2 numbers*/\nint min(int m, int n)\n{\n  return  n + ((m - n) & ((m - n) >>\n            (sizeof(int) * CHAR_BIT - 1)));\n}\n \n/* using the above function to find the smallest of 3 numbers*/\nint small(int a, int b, int c)\n{\n    return min(a, min(b, c));\n}\n \nint main()\n{\n   int x = 21, y = 56, z = 35;\n   printf(\"The smallest number of the three is %d\", small(x, y, z));\n   return 0;\n}"
+            }
+            ],
+            "complexity": ">Time Complexity is __O(1)__ as no loops are used.\nSpace Complexity is __O(1)__ as an extra variables is being used. \n\n"
+            },
+            {
+            "topic": "Method 3: Using the division operator\n",
+            "description": "Using the division operator we compare 2 numbers at a time.\n\n",
+            "algorithm": "procedure smallest(a,b,c)\nif !(b/a)\n	if !(b/c)\n		return b\n	else \n		return c\nif !(a/c)\n	return a\nelse \n	return c\n\n",
+            "explanation": "1.Compare if b/a is <1 and is so b is the smallest so continue to compare with the 3rd number.\n2.Similarly if b/c is <1 then b is the smallest and if not c is the smallest.\n3.Use the same logic for a and c to compare if a is the smallest.\n\n",
+            "code": [
+            {
+            "language": "c",
+            "code": "#include <stdio.h>\n \n// To find the minimum of three input numbers\nint smallest(int a, int b, int c)\n{\n    if (!(b/a))  // This has a similar return value as \"if (y < x)\"\n        return (!(b/c))? y : z;\n    return (!(a/c))? x : z;\n}\n \nint main()\n{\n    int x = 8, y = 16, z = 9;\n    printf(\"the smallest of the 3 given numbers is %d\", smallest(x, y, z));\n    return 0;\n}"
+            }
+            ],
+            "complexity": ">Time Complexity is __O(1)__ as no loops are used.\nSpace Complexity is __O(1)__ as no extra variables are used.\n\n"
+            }
+            ],
+            }
+    }

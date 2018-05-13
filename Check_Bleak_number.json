@@ -1,0 +1,43 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program to check if a number is bleak or not.",
+        "description": "A number ‘n’ is said to be Bleak if it \"cannot\" be represented as sum of a positive number x and number of set bits in x, i.e., x + countSetBits(x) is not equal to n for any positive number x.",
+        "example": "> If input is 3, then output is NOT BLEAK.\nwhy?\n# can be represented as 2 + countSetBits(2) = 3, which is same as the given input number.\n\nSimilarly, if the input is 4, then the output is BLEAK, as 4 cannot be represented as x + countSetBits(x) where x is any positive number.\n",
+        "solutions": [
+            {
+				"topic": "Brute Force or Trivial Solution",
+				"description": "Here we check for all positive numbers less than the given number, if x + countSetBits(x) is equal to our given number.If not then we can say that our number is Bleak.\n",
+				"algorithm": "bool isBleak(n)\nfor all numbers smaller than n\n          if x + countSetBits(x) == n\n                return false\n         end if\n     end for\n        return true\n",
+				"code": [
+					{
+						"language": "c++",
+						"code": "#include <bits/stdc++.h>\nusing namespace std;\n \n// Function to count the number of set bits\nint countSetBits(int x)\n{\n    unsigned int count = 0;\n    while (x) \n    {\n        x &= (x - 1);\n        count++;\n    }\n    return count;\n}\n \n// Returns true if n is Bleak\nbool isBleak(int n)\n{\n    for (int x = 1; x < n; x++)\n        if (x + countSetBits(x) == n)\n            return false;\n \n    return true;\n}\n \n\nint main()\n{\n    isBleak(5) ? cout << \"Yes\\n\" : cout << \"No\\n\";\n    isBleak(4) ? cout << \"Yes\\n\" : cout << \"No\\n\";\n    return 0;\n}"
+                    },
+          {
+                        "language": "java",
+                        "code": "import java.io.*;\n \nclass GFG {\n \n    // Function to count the no of set bits\n      \n    static int countSetBits(int x)\n    {\n        int count = 0;\n        while (x != 0) \n        {\n            x &= (x - 1);\n            count++;\n        }\n        return count;\n    }\n \n    // Returns true if n is Bleak\n    static boolean isBleak(int n)\n    {\n        // Check for all numbers 'x' smaller\n        // than n.  If x + countSetBits(x)\n        // becomes n, then n can't be Bleak\n        for (int x = 1; x < n; x++)\n            if (x + countSetBits(x) == n)\n                return false;\n \n        return true;\n    }\n \n    public static void main(String args[])\n    {\n        if (isBleak(5))\n            System.out.println(\"Yes\");\n        else\n            System.out.println(\"No\");\n        if (isBleak(6))\n            System.out.println(\"Yes\");\n        else\n            System.out.println(\"No\");\n    }\n}"
+          },
+				],
+				"complexity" : ">The time complexity is __O(n log n)__ where n is the input number.\n\n>The space complexity is __O(1)__ .\n"
+            },
+          {
+          "topic": "A better method",
+          "description": "The idea is to check numbers from range n – ceilingLog2(n) to n because the largest count of set bits in any number smaller than n cannot exceed ceiling of Log n.\n",
+          "algorithm": "bool isBleak(n)\nfor all numbers n - ceiling(Log2n) to n-1\n          if x + countSetBits(x) == n\n                return false\n         end if\n     end for\n        return true\n",
+          "code": [
+          {
+          "language": "c++",
+          "code": "#include <bits/stdc++.h>\nusing namespace std;\n \n// Function to get no of set bits \nint countSetBits(int x)\n{\n    unsigned int count = 0;\n    while (x) {\n        x &= (x - 1);\n        count++;\n    }\n    return count;\n}\n \n// A function to return ceiling of log x base 2\nint ceilLog2(int x)\n{\n    int count = 0;\n    x--;\n    while (x > 0) {\n        x = x >> 1;\n        count++;\n    }\n    return count;\n}\n \nbool isBleak(int n)\n{\n    for (int x = n - ceilLog2(n); x < n; x++)\n        if (x + countSetBits(x) == n)\n            return false;\n \n    return true;\n}\n \nint main()\n{\n    isBleak(5) ? cout << \"Yes\\n\" : cout << \"No\\n\";\n    isBleak(4) ? cout << \"Yes\\n\" : cout << \"No\\n\";\n    return 0;\n}\n",
+          },
+          {
+          "language": "java",
+          "code": "import java.io.*;\n \nclass GFG {\n \n    // Function to get no of set bits\n    static int countSetBits(int x)\n    {\n        int count = 0;\n        while (x != 0) {\n            x &= (x - 1);\n            count++;\n        }\n        return count;\n    }\n \n    // A function to return ceiling of log x base 2\n    static int ceilLog2(int x)\n    {\n        int count = 0;\n        x--;\n        while (x > 0) {\n            x = x >> 1;\n            count++;\n        }\n        return count;\n    }\n    static boolean isBleak(int n)\n    {\n        for (int x = n - ceilLog2(n); x < n; x++)\n            if (x + countSetBits(x) == n)\n                return false;\n \n        return true;\n    }\n    public static void main(String[] args)\n    {\n        if (isBleak(5))\n            System.out.println(\"Yes\");\n        else\n            System.out.println(\"No\");\n \n        if (isBleak(4))\n            System.out.println(\"Yes\");\n        else\n            System.out.println(\"No\");\n    }\n}"
+          },
+        ],
+          "complexity": "The time complexity is __O(log n * log n)__ where n is the input number.\n\n>The space complexity is __O(1)__ .\n"
+          },
+        ]
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program to check if a number is a NEON number or not.",
+        "description": "What is a Neon number?\nA number whose sum of digits of the square of the number is equal to the number is called a neon number.\n",
+        "example": "> For example : 9 is a Neon number\n1)We find the square of the number.\n9 * 9 = 81\n2)We find the sum of the digits.\n8 + 1 = 9  , which is the original number.\nHence, 9 is a neon number.\n",
+        "solutions": [
+            {
+				"topic": "Simple Solution",
+				"description": "1) First we square the number.\n2) Then we use a loop to extract the digits and calculate the sum of the digits.\n3) Finally we check if the sum is equal to the original number.\n",
+				"algorithm": "procedure neon(num)\ninitialize sqaure = num*num\ninitialize digit_sum = 0 \nwhile square != 0\ndigit_sum = digit_sum + square % 10   //exctracting last digit\nsquare = square/10                  //removing the last digit\nend while\nif digit_sum = num              //checking if sum of digits equals \n//original number\nprint “NEON Number”\nend procedure\n\n",
+				"code": [
+					{
+						"language": "c++",
+						"code": "#include <iostream>\nusing namespace std;\n#include <math.h>\n\nvoid isNeon(int num)\n{\n    int square = num * num;\n    int digit_sum = 0;\n    while (square != 0) {\n        digit_sum = digit_sum + square % 10;\n        square = square / 10;\n    }\n   if (digit_sum == num)\n        cout<<\"It is a NEON number\\n\";\n   else\n        cout<<\"It is NOT a NEON number\\n\";\n}\n\nint main(void)\n{\n    int n;\n    cout<<\"Enter a number to check if Neon or not : \";\n    cin>>n;\n    isNeon(n);\n}\n"
+          },
+          {
+            "language": "java",
+            "code": "import java.io.*;\n \nclass Neon {\n    static void isNeon(int num)\n    {\n        int square = num * num;\n        int digit_sum = 0;\n        while (square != 0) {\n            digit_sum = digit_sum + square % 10;\n            square = square / 10;\n        }\n       if (digit_sum == num)\n            System.out.println(\"It is a NEON number\");\n       else \n            System.out.println(\"It is NOT a NEON number\"); \n    }\n \n    public static void main(String args[])throws IOException\n    {\n        int n=9;\n        isNeon(n);\n    }\n}"
+          }
+				],
+				"complexity" : ">The time complexity is linear, that is __O(n)__, where n = the number of digits in the square of the original number.\nThe space complexity is __O(1)__.\n"
+            }
+        ]
+    }
+}

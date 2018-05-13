@@ -1,0 +1,51 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program to Check whether a number is power of two.",
+        "description": "Given a number n, check if the number can be represented completely as a power of 2.",
+        "example": "> For Example:\nIf the input is 8 then the output will be “YES”   // It is 2 raised to the power 3\nIf the input is 17 then output will be  “NO”",
+        "solutions": [
+            {
+				"topic": "Method 1 : Using logarithm",
+				"description": "A simple method suggests that if log of the input number to the base 2 turns to be an integer then it can be expressed purely as a power of 2.",
+				"algorithm": "#input = x\npower(x)\nif ceil(log(x) = floor(log(x)     //check if the output is an integer\n       print “It can be expressed purely as a power of 2”",
+				"explanation": "1.We take the ceil function of log to the base 2 of the input. This will round off the output to the highest integer.\n2.Similarly, we take the floor function of the log to the base to of the input as this will round of to the smallest integer.\n3.The two values will be equal only if the output was an integer.",
+				"code": [
+					{
+						"language": "c",
+						"code": "#include<stdio.h>\n#include<stdbool.h>\n#include<math.h>\n \nbool isPower(int x)\n{\n   return (ceil(log2(x)) == floor(log2(x))); //check if the output of log2(n) is an integer\n}\n \nint main()\n{\n    isPower(31)? printf(\"Yes\\n\"): printf(\"No\\n\"); // if the function returns 1 it is yes if it returns 0 it is no\n    isPower(64)? printf(\"Yes\\n\"): printf(\"No\\n\");\n    return 0;\n}",
+                    },
+				],
+				"complexity" : ">The time complexity is __O(1)__ as the loop runs only once.\nThe space complexity is __O(1)__ as no extra space is being used."
+            },
+            {
+              	"topic": "Method 2 : Using continuous division",
+                "description": "By iteratively dividing the number n by 2. If at any point n % 2 becomes a nonzero when n is not 1 then it is not a power of 2. If n becomes 1 then it is a power of 2.",
+                "algorithm": "#input = x\npower(x)\nif x = 0\nreturn 0\nwhile  x !=1 do:\n	if n % 2 != 0\n		return 0\n	n = n / 2\nreturn 1\nend while",
+                "explanation": "1.If the input number is zero then the function should return 0 and if it is 1 then it should return 1. (edge cases).\n2.For any other input using a while loop of the remainder of the input by 2 is a non-zero number then it is not a power of 2.\n3. If it is divisible by 2 then input = input by 2 and continue the process till the number is 1.",
+                "code": [
+                {
+                "language": "c",
+                "code": "#include<stdio.h>\n#include<stdbool.h>\n\nbool isPower(int x)\n{\nif (x == 0)\n    return 0;\nwhile (x != 1)\n{\n    if (x%2 != 0)  // To check if the remainder of input divided by 2 leads to 1\n        return 0;\n    x = x/2;\n}\nreturn 1;\n}\nint main()\n{\nisPower(128)? printf(\"Yes\\n\"): printf(\"No\\n\"); // If the function returns 1 it is yes and if it returns 0 it is no\nisPower(69)? printf(\"Yes\\n\"): printf(\"No\\n\");\nreturn 0;\n}\n"
+                },
+                {
+                "language": "java",
+                "code": "import java.io.*;\n \nclass Checkpower {\n \n    static boolean isPower(int x)\n    {\n        if (x == 0)\n            return false;\n         \n        while (x != 1)\n        {\n            if (x % 2 != 0)    // to check if the iterative division gives 1 \n                return false;\n            x = x / 2;\n        }\n        return true;\n    }\n \n    public static void main(String args[])\n    {\n        if (isPower(128))\n            System.out.println(\"Yes\");\n        else\n            System.out.println(\"No\");\n \n        if (isPower(68))\n            System.out.println(\"Yes\");\n        else\n            System.out.println(\"No\");\n    }\n}"
+              },
+              {
+                "language": "c#",
+                "code": "using System;\n \nclass Checkpower\n{\n\n    static bool isPower(int x)\n    {\n        if (x == 0)\n            return false;\n         \n        while (x != 1) {\n            if (x % 2 != 0)\n                return false;\n                 \n            x = x / 2;\n        }\n        return true;\n    }\n \n    // Driver program \n    public static void Main()\n    {\n        Console.WriteLine(isPower(512) ? \"Yes\" : \"No\");\n        Console.WriteLine(isPower(69) ? \"Yes\" : \"No\");\n \n    }\n}"
+              },
+              {
+                "language": "Python",
+                "code": "def isPower(x):\n    if (x == 0):\n        return False\n    while (x != 1):\n            if (x % 2 != 0):    # if the iterative division gives 1 in the end and no non-zero remainder\n                return False\n            x = x / 2\n             \n    return True\n \n# Driver code\nif(isPower(32)):\n    print('Yes')\nelse:\n    print('No')\nif(isPower(65)):\n    print('Yes')\nelse:\n    print('No')\n"
+              }
+
+                ],
+                "complexity": ">The time complexity is __O(n)__ as the loop runs till n reaches one of the conditions mentioned.The space complexity is __O(1)__ as no extra variable is used. "
+            }
+
+        ]
+    }
+}

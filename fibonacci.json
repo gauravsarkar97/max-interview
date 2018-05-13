@@ -1,0 +1,77 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program to print the n-th number of the Fibonacci series.",
+        "description": "The fibonacci series is \"0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ……\".\nMathematically, it can be represented using a recurrence relation :\n    Fn = Fn-1 + Fn-2\n\nWhere, Fn is the n-th term in the fibonacci sequence.\nAlso the starting values of  and  are 0 and 1 respectively.",
+        "example": "> For example : Sample Input 5 will give an output of 3, which is the 5th term of the series.",
+        "solutions": [
+            {
+				"topic": "Method 1(Using Recursion) :",
+				"description": "We write a function fibo(int num) which returns the n-th term.This function is called recursively to generate the successive numbers in the sequence until we get the n-th number we are looking for.",
+				"algorithm": "procedure fibo(int num)\n   if num <= 1\n      return num;\n   return fibo(num-1) + fibo(num-2)\n\n",
+        "explanation": "We perform the recursive call to the fibo() function and pass the sum of n-1 and n-2 numbers. This process goes on until the function finally returns to us the n-th number of the series.",
+				"code": [
+					{
+						"language": "c",
+						"code": "#include<stdio.h>\nint fibo(int num)\n{\n   if (num <= 1)\n      return num;\n   return fibo(num-1) + fibo(num-2);\n}\n \nint main ()\n{\n  int num = 12;\n  printf(\"%d\", fibo(num));\n  getchar();\n  return 0;\n}"
+          },
+          {
+            "language": "java",
+            "code": "import java.util.Scanner;\nclass Fibonacci\n{\n    static int fibo(int n)\n    {\n    if (n <= 1)\n       return n;\n    return fibo(n-1) + fibo(n-2);\n    }\n      \n    public static void main (String args[])\n    {\n    int n = 12;\n    System.out.println(fibo(n));\n    }\n}"
+          }
+				],
+				"complexity" : ">The time complexity is \"T(N) = T(N-1) + T(N-2)\" which is exponential in nature. Also the space complexity is O(N) in worst case considering all the repeated function calls which lead to a stack in the memory where all the recursive calls are stored."
+            },
+            {
+            "topic": "Method 2(Using Dynamic Programming) :",
+            "description": "We can easily avoid the extra and unnecessary steps done in the previous method by storing the numbers that we have calculated so far. This is done by using dynamic programming approach.\n\n",
+            "algorithm": "fibo(int n)\ninitialize f[0] = 0, f[1] =1     //starting values of series\nfor i = 2 to n do:\nf[i] = f[i+1] + f[i+2]\nreturn f[n]      //n-th fibonacci number\nend procedure\n\n",
+            "explanation": "We simply use an array for storing the the terms of the series and we finally return the required term of the series.\n",
+            "code": [
+            {
+            "language": "c",
+            "code": "#include<stdio.h>\n\nint fibo(int n)\n{\n  int f[n+2];   //to handle case, n = 0\n  int i;\n\n  f[0] = 0;  //0 and 1 are first and second number of the series\n  f[1] = 1;\n\n  for (i = 2; i <= n; i++)\n  {\n      f[i] = f[i-1] + f[i-2];   //add previous two nos. and storing\n  }\n  return f[n];\n}\n\nint main ()\n{\n  int n = 10;\n  printf(\"%d\", fibo(n));\n  getchar();\n  return 0;\n}"
+            },
+            {
+            "language": "java",
+            "code": "import java,util.Scanner\nclass Fibonacci\n{\n   static int fibo(int n)\n    {\n  \n    int f[] = new int[n+2]; //to handle case, n = 0\n    int i;\n      \n    f[0] = 0;         //0 and 1 are first and second number of the series\n    f[1] = 1;\n     \n    for (i = 2; i <= n; i++)\n    {\n        f[i] = f[i-1] + f[i-2];        //add previous two nos. and storing\n    }\n    return f[n];\n    }\n      \n    public static void main (String args[])\n    {\n        int n = 10;\n        System.out.println(fibo(n));\n    }\n}\n\n\n\n1 Comment",
+            }
+            ],
+            "complexity": ">This process requires O(N) time because of the loop we are using.\nAlso the space required is O(N) as we are storing the numbers in an array f[].\n\n"
+            },
+            {
+            "topic": "Method 3(Using matrix) :\n"
+            "description": "Let M be a matrix ={{1,1},{1,0}} \n. Now if we multiply the Matrix M with itself for n times, we will be getting the (n+1)th fibonacci number at its (0,0) position.\nThus we need to calculate power(M,n)\n.",
+            "algorithm": "procedure fibo(n)\ninitialize F[2][2] = {{1,1},{1,0}}\nif n != 0\npower(f, n-1) \nreturn F[0][0]\nend procedure fibo\n\nprocedure multiply(F[][] , M[][])\n//initialize p =  F[0][0]*M[0][0] + F[0][1]*M[1][0];\n//initialize q =  F[0][0]*M[0][1] + F[0][1]*M[1][1];\n//initialize r =  F[1][0]*M[0][0] + F[1][1]*M[1][0];\n//initialize s =  F[1][0]*M[0][1] + F[1][1]*M[1][1];\nF[0][0] = p\nF[0][1] = q\nF[1][0] = r\nF[1][1] = s\nend procedure multiply\n\nprocedure power(F[][] ,n)\n//initialize M[2][2] = {{1,1},{1,0}}\nfor i = 2 to n do:\nmultiply(F , M)       //multiplying M to itself n-1 times\nend procedure power\n",
+            "code": [
+            {
+            "language": "c",
+            "code": "#include <stdio.h>\n\nvoid multiply(int F[2][2], int M[2][2]);\n\nvoid power(int F[2][2], int n);\n\nint fibo(int n)\n{\n  int F[2][2] = {{1,1},{1,0}};\n  if (n == 0)\n      return 0;\n  power(F, n-1);\n\n  return F[0][0];\n}\n\nvoid multiply(int F[2][2], int M[2][2])\n{\n  int p =  F[0][0]*M[0][0] + F[0][1]*M[1][0];\n  int q =  F[0][0]*M[0][1] + F[0][1]*M[1][1];\n  int r =  F[1][0]*M[0][0] + F[1][1]*M[1][0];\n  int s =  F[1][0]*M[0][1] + F[1][1]*M[1][1];\n\n  F[0][0] = p;\n  F[0][1] = q;\n  F[1][0] = r;\n  F[1][1] = s;\n}\n\nvoid power(int F[2][2], int n)\n{\n  int i;\n  int M[2][2] = {{1,1},{1,0}};\n\n  for (i = 2; i <= n; i++)\n      multiply(F, M);\n}\n\nint main()\n{\n  int n = 10;\n  printf(\"%d\", fibo(n));\n  getchar();\n  return 0;\n}",
+            },
+            {
+            "language": "java",
+            "code": "import java,util.Scanner\nclass Fibonacci\n{\n    static int fib(int n)\n    {\n    int F[][] = new int[][]{{1,1},{1,0}};\n    if (n == 0)\n        return 0;\n    power(F, n-1);\n     \n       return F[0][0];\n    }\n      \n    static void multiply(int F[][], int M[][])\n    {\n    int p =  F[0][0]*M[0][0] + F[0][1]*M[1][0];\n    int q =  F[0][0]*M[0][1] + F[0][1]*M[1][1];\n    int r =  F[1][0]*M[0][0] + F[1][1]*M[1][0];\n    int s =  F[1][0]*M[0][1] + F[1][1]*M[1][1];\n      \n    F[0][0] = p;\n    F[0][1] = q;\n    F[1][0] = r;\n    F[1][1] = s;\n    }\n    static void power(int F[][], int n)\n    {\n    int i;\n    int M[][] = new int[][]{{1,1},{1,0}};\n     \n    for (i = 2; i <= n; i++)\n        multiply(F, M);\n    }\n      \n    public static void main (String args[])\n    {\n    int n = 10;\n    System.out.println(fibo(n));\n    }\n}"
+            }
+            ],
+            "complexity": ">This method takes time __O(N)__ as there is a single loop which runs for n-1 times. Hence the complexity is linear.\nThe space complexity requires an extra __O(1)__ space.\n"
+            },
+            {
+            "topic": "Method 4:\n"
+            "description": "This is same as the previous method. Only difference is that we use recursion to do the multiplication of the matrix with itself instead of using a loop. This reduces the time complexity from linear to logarithmic time.\nThe difference lies in only the power() function, which is much more optimized than in method 3.\n",
+            "algorithm": "procedure fibo(n)\ninitialize F[2][2] = {{1,1},{1,0}}\nif n != 0\npower(f, n-1) \nreturn f[0][0]\nend procedure fibo\n\nprocedure multiply(F[][] , M[][])\n//initialize p =  F[0][0]*M[0][0] + F[0][1]*M[1][0];\n//initialize q =  F[0][0]*M[0][1] + F[0][1]*M[1][1];\n//initialize r =  F[1][0]*M[0][0] + F[1][1]*M[1][0];\n//initialize s =  F[1][0]*M[0][1] + F[1][1]*M[1][1];\nF[0][0] = p\nF[0][1] = q\nF[1][0] = r\nF[1][1] = s\nend procedure multiply\n\nprocedure power(F[][] ,n)\n//initialize M[2][2] = {{1,1},{1,0}}\nif n != 0 or n != 1\ninitialize M[2][2] = {{1,1},{1,0}}\npower(F , n/2 )\nmultiply(F , F)     \nif n%2 != 0 \nmultiply(F , M)\nend procedure power\n",
+            "code": [
+            {
+            "language": "c",
+            "code": "#include <stdio.h>\nvoid multiply(int F[2][2], int M[2][2]);\nvoid power(int F[2][2], int n);\n\nint fibo(int n)\n{\n  int F[2][2] = {{1,1},{1,0}};\n  if (n == 0)\n    return 0;\n  power(F, n-1);\n  return F[0][0];\n}\n \nvoid power(int F[2][2], int n)    //optimized power() func\n{\n  if( n == 0 || n == 1)\n      return;\n  int M[2][2] = {{1,1},{1,0}};\n \n  power(F, n/2);       //recursive call\n  multiply(F, F);\n \n  if (n%2 != 0)\n     multiply(F, M);\n}\n \nvoid multiply(int F[2][2], int M[2][2])\n{\n  int p =  F[0][0]*M[0][0] + F[0][1]*M[1][0];\n  int q =  F[0][0]*M[0][1] + F[0][1]*M[1][1];\n  int r =  F[1][0]*M[0][0] + F[1][1]*M[1][0];\n  int s =  F[1][0]*M[0][1] + F[1][1]*M[1][1];\n \n  F[0][0] = p;\n  F[0][1] = q;\n  F[1][0] = r;\n  F[1][1] = s;\n}\n\nint main()\n{\n  int n = 10;\n  printf(\"%d\", fibo(n));\n  getchar();\n  return 0;\n}",
+            },
+            {
+            "language": "java",
+            "code": "import java.util.Scanner;\nclass Fibonacci\n{\n    static int fibo(int n)\n    {\n    int F[][] = new int[][]{{1,1},{1,0}};\n    if (n == 0)\n        return 0;\n    power(F, n-1);\n      \n    return F[0][0];\n    }\n      \n    static void multiply(int F[][], int M[][])\n    {\n    int p =  F[0][0]*M[0][0] + F[0][1]*M[1][0];\n    int q =  F[0][0]*M[0][1] + F[0][1]*M[1][1];\n    int r =  F[1][0]*M[0][0] + F[1][1]*M[1][0];\n    int s =  F[1][0]*M[0][1] + F[1][1]*M[1][1];\n     \n    F[0][0] = p;\n    F[0][1] = q;\n    F[1][0] = r;\n    F[1][1] = s;\n    }\n    \n    static void power(int F[][], int n)     //optimized power() func\n    {\n    if( n == 0 || n == 1)\n      return;\n    int M[][] = new int[][]{{1,1},{1,0}};\n      \n    power(F, n/2);\n    multiply(F, F);      //recursive call\n    if (n%2 != 0)\n       multiply(F, M);\n    }\n     \n    public static void main (String args[])\n    {\n         int n = 10;\n     System.out.println(fibo(n));\n    }\n}"
+            }
+            ],
+            "complexity": ">Thus this method reduces the worst case time complexity to __O(log N)__ due to recursion.\n The space complexity becomes __O(log N)__ if we consider function call stack size otherwise it is __O(1)__."
+            }
+        ]
+    }
+}

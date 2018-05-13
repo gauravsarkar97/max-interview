@@ -1,0 +1,29 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program to generate a magic square of odd order.",
+        "description": "A magic square of size n commonly refers to n^2 numbers arranged as n numbers in each row and each column in such a way that the row, column and both diagonals sum to the same constant. It will contain integers from 1 to n^2.",
+        "example": "> For value of input size n=3, the magic square generated has to be\n 2	7	6\n9	5	1\n4	3	8\n\n",
+        "solutions": [
+            {
+				"topic": "Using the magic constant calculation.",
+				"description": "Magic Constants : The magic sum of each row, column and each diagonal which are all the same is referred to as the Magic constants. This value depends completely on n and is determined by the formula:\nM = n(n^2+1)/2\nFor Example :For the above given magic square for input = 3 the magic constant is\n3 * (3^2+1)/2 = 3* (7)/2 = 15 \n",
+				"algorithm": "procedure Magic(n)  // n is size of matrix and must be an odd number \ninitialize magicSquare[n][n] = 0 // declare all elements of matrix of size n to 0\n// fix the starting position \n     i = n/2\n     j = n-1\n     // including values in the matrix \n    for num = 1 to n*n do:\n//Case 3\n        if i = -1 and j = n \n            j = n-2  // Declare moving position for this condition\n            i = 0\n        else\n             if j equals n    // If number out of right side\n                j = 0\n            if i < 0   // If number out of top side\n                i=n-1\n//Case 2\n        if (magicSquare[i][j]) \n            j -= 2\n            i++\n            continue\n        else\n            magicSquare[i][j] = num++ //Setting num value         j++ \n        i-- //Case 1 \nreturn magicSquare[n][n]\n\n",
+        "explanation": "1.Run a loop in condition to fill all the values. Start from position (n/2,n-1) and take this as (m,n) \n2.Case 1 : The next numbers will be to move above by decrementing a row and incrementing a column both by 1 to position (m-1,n+1). The loop runs as long as row becomes -1 and then wrap back to n-1 and similarly for columns till n and it wraps back to 0. \n3.Case 2 : If the position has already been filled then we decrement column by 2 and increment row by 1. \n4.Case 3 : If row position is -1 and column position is n then new position will be (0, n-2)\n",
+				"code": [
+        {
+        "language": "c++",
+        "code": "#include<stdio.h>\n#include<string.h>\n \n// A function to generate odd sized magic squares\nvoid MSquare(int n)\n{\n    int magicSquare[n][n];\n \n    // initializing to 0\n    memset(magicSquare, 0, sizeof(magicSquare));\n \n    // Initialize position for 1\n    int i = n/2;\n    int j = n-1;\n \n    // One by one put all values in magic square\n    for (int num=1; num <= n*n; )\n    {\n        if (i==-1 && j==n) //Case 3\n        {\n            j = n-2;\n            i = 0;\n        }\n        else\n        {\n            // Condition 1 if next number \n            // goes to out of square's right side\n            if (j == n)\n                j = 0;\n \n            // Condition 1 if next number \n            // is goes to out of square's upper side\n            if (i < 0)\n                i=n-1;\n        }\n        if (magicSquare[i][j]) //Case 2\n        {\n            j -= 2;\n            i++;\n            continue;\n        }\n        else\n            magicSquare[i][j] = num++; //set number\n \n        j++; i--; //1st condition\n    }\n \n    // Printing the magic square\n    printf(\"Magic Square for n=%d:\\nSum of \"\n       \"each row or column %d:\\n\\n\",  n, n*(n*n+1)/2);\n    for (i=0; i<n; i++)\n    {\n        for (j=0; j<n; j++)\n            printf(\"%3d \", magicSquare[i][j]);\n        printf(\"\\n\");\n    }\n}\n \n\nint main()\n{\n    int n = 3; \n    MSquare (n);\n    return 0;\n}\n"
+        },
+					{
+						"language": "python",
+						"code": "def MagicSquare(siz):\n\n\u0009# 2-D array with all slots set to 0\n\u0009Square = [[0 for x in range(siz)]for y in range(siz)]\n\n\u0009# initialize position of 1\n\u0009m = siz/2\n\u0009n = siz-1\n\u0009\n\u0009# Entering value into the square \n\u0009num = 1\n\u0009while num <= (siz*siz):\n\u0009\u0009if m == -1 and n == siz: # Case 3\n\u0009\u0009\u0009n = siz-2\n\u0009\u0009\u0009m = 0\n\u0009\u0009else:\n\u0009\u0009\u0009# filling in positions to the right of teh central value\n\u0009\u0009\u0009if n == siz:\n\u0009\u0009\u0009\u0009n = 0\n\u0009\u0009\u0009# filling in positions above the central value\n\u0009\u0009\u0009if m < 0:\n\u0009\u0009\u0009\u0009m = siz-1\n\u0009\u0009\u0009\u0009\n\u0009\u0009if Square[m][n]: # Case 2 \n\u0009\u0009\u0009n = n-2\n\u0009\u0009\u0009m = m+1\n\u0009\u0009\u0009continue\n\u0009\u0009else:\n\u0009\u0009\u0009Square[m][n] = num\n\u0009\u0009\u0009num = num+1\n\u0009\u0009\u0009\u0009\n\u0009\u0009n = n+1\n\u0009\u0009m = m-1 #Case 1 \n\n\n\u0009# The magic square\n\u0009\n\u0009print \"Magic constant\",siz*(siz*siz+1)/2\n\u0009print \"\\n The Magic Squre is \\n \"\n\u0009\n\u0009for a in range(0,siz):\n\u0009\u0009for b in range(0,siz):\n\u0009\n\u0009\u0009\u0009print '%2d ' %(Square[a][b]),\n\u0009\u0009print\n\n\n# Driver program\nMagicSquare(3)"
+                    },
+				],
+				"complexity" : ">The time complexity is __O(n^2)__ as the loop runs from 1 to n^2.\nThe space complexity is __O(1)__ as there are extra variables used.\n"
+            },
+        ],
+        "reference": "To understand how the values are filled refer to \n\"http://en.wikipedia.org/wiki/Magic_square\"\n"
+    }
+}

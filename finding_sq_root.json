@@ -1,0 +1,45 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Finding square root of a number without using library function.",
+        "description": "Given a number, the function should output the square root of the number. The number may or may not be a perfect square.",
+        "example": "> Eg :  If the input number is \"25\" then the output will be = \"5\"\nIf the input number is = \"50\" then the output will be = \"7.071068\"\n",
+        "solutions": [
+            {
+				"topic": "Using the Babylonian Method",
+				"description": "The Babylonian method is among various others to find the square root of an input. It is derived from Newton-Raphson method.\n1.We begin with an arbitrary positive value a. Here we use the input number itself as the approximation. We try to make this value closest to the expected square value.\n2.Now we start off with b=1.\n3.We then use a loop to bring the value to the closest approximation. We get to this by taking the average of a and b.\nThen, b = num/a.\n\n",
+				"algorithm": "Function(input)\ninitialize a = input\n b = 1\ne=0.000001 // We can adjust the accuracy here \nwhile a-b > e do:\n    		 a = (a + b)/2\n    		 b = num/a\n	return a\n",
+        "explanation": "If the input was num = 9 then \ne= 0.000001 , a = 9 and b = 1\n In loop 1 : when a-b > e\n a = 10/ 2 = 5\nb = 9/5 => 1.8\n In loop 2 : when 3.2 > e \na = 3.4\n b = 2.8125\nIn loop 3 : when 0.5875> e \na = 3.10625\nb = 2.897384\nIn loop 4 : when 0.208 > e\nAnd so on \n",
+				"code": [
+        {
+        "language": "c",
+        "code": "#include<stdio.h>\n\u00A0\n//Function to find the square root of a given number\nfloat sqRoot(float num)\n{\n\u00A0\u00A0/*Begin by using num as the approximation */ \n\u00A0\u00A0float a = num;\n\u00A0\u00A0float b = 1;\n\u00A0\u00A0float e = 0.000001; /* This will determine the accuracy value*/\n\u00A0\u00A0while(a - b > e)\n\u00A0\u00A0{\n\u00A0\u00A0\u00A0\u00A0a = (a + b)/2;\n\u00A0\u00A0\u00A0\u00A0b = num/a;\n\u00A0\u00A0}\n\u00A0\u00A0return a;\n}\n\u00A0\n\nint main()\n{\n\u00A0\u00A0int n = 25;\n\u00A0\u00A0printf (\"The Square root is %f\",sqRoot(n));\n\u00A0\u00A0getchar();\n}"
+        },
+					{
+						"language": "java",
+						"code": "class GFG {\n\u00A0\u00A0\u00A0\u00A0\u00A0\n\u00A0\u00A0\u00A0\u00A0/*Function to find the square root of a given number */\n\u00A0\u00A0\u00A0\u00A0static float sqRoot(float num)\n\u00A0\u00A0\u00A0\u00A0{\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\n\u00A0\u00A0\u00A0\u00A0\u00A0/*We use input num as the approximation to start with */\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0float a = num;\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0float b = 1;\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0// e will determine the accuracy \n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0double e = 0.000001;\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0while(a - b > e)\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0{\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0a = (a + b)/2;\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0b = num/a;\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0}\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0return a;\n\u00A0\u00A0\u00A0\u00A0}\n\u00A0\u00A0\u00A0\u00A0\u00A0\n\u00A0\u00A0\u00A0\u00A0public static void main(String[] args)\n\u00A0\u00A0\u00A0\u00A0{\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0int n = 52;\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0System.out.printf (\"Square root is\u201D + sqRoot(n));\n\u00A0\u00A0\u00A0\u00A0}\n}"
+                    },
+          {
+          "language": "python",
+          "code": "# Function to find the square root of a given number\ndef sqRoot(num):\n\u00A0\n\u00A0\u00A0\u00A0\u00A0# We start by using input num as the approximation  \n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0a = num\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0b = 1\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0# e can determine the accuracy\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0e = 0.000001\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0while(a-b>e):\n\u00A0\u00A0\u00A0\u00A0\u00A0\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0a = (a+b)/2\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0b = n/a\n\u00A0\u00A0\u00A0\u00A0\u00A0\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0return a\n\u00A0\n# Driver program \nn = 25\nprint(\"Square root is\", round(sqRoot(n), 6))"
+          },
+				],
+				"complexity" : ">Time Complexity is __O(num)__ as the input number will determine the number of times the loop runs.\nSpace Complexity is __O(1)__ as there are extra variables declared.\n"
+            },
+            {
+            "topic": " For perfect square",
+            "description": "This method will work when the input number is a perfect square.\n",
+            "algorithm": "Function(input)\na = input \nb = 1\nwhile a>b do:\n    		 a = (a + b)/2\n    		 b = num/a\n	return a\n",
+            "explanation": "1.We begin with an arbitrary positive value a. here we use the input number itself as the approximation. We try to make this value closest to the expected square value.\n2.Now we start off with b=1.\n3.We then use a loop to bring the value to the closest approximation when a is greater than 1. We get to this by taking the average of a and b . Then , b = num/a.\n",
+            "code": [
+            {
+            "language": "c",
+            "code": "unsigned int sqRoot(int num)\n{\n\u00A0\u00A0int a = num;\n\u00A0\u00A0int b = 1;\n\u00A0\u00A0while(a > b)\n\u00A0\u00A0{\n\u00A0\u00A0\u00A0\u00A0a = (a + b)/2;\n\u00A0\u00A0\u00A0\u00A0b = num/a;\n\u00A0\u00A0}\n\u00A0\u00A0return a;\n}\n\u00A0\nint main()\n{\n\u00A0\u00A0int n = 29;\n\u00A0\u00A0printf (\"Square Root of %d is %d\", n, sqRoot(n));\n\u00A0\u00A0getchar();\n}",
+            }
+            ],
+            "complexity": "Time Complexity is __O(num)__ as num will determine the number of times the loop will run.\nSpace Complexity is __O(1)__ as we use extra variable.\n"
+            },
+        ],
+    }
+}

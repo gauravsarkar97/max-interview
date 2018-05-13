@@ -1,0 +1,24 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program to find the average of an array(or stream) of numbers",
+        "description": "Enter a stream of numbers. The output should be the average of the numbers. The mean or average needs to be revaluated every time a new number is entered into the stream. ",
+        "example": "> For Example:\nLet input be __A[] = \"{ 2 , 2 , 3 , 4 , 5 , 6 }\" the output will be 3.666\nFor input __A[] = \"{ 2 , 2 , 3 , 4 , 5 , 6 , 7 , 8 }\" the output will be __4.625",
+        "solutions": [
+            {
+				"topic": "By adding the new element and taking mean",
+				"description": "Everytime a new number is added the function runs again that adds the new number to the total and divides by the total number of elements. ",
+				"algorithm": "\u0009#Input arrat A[]\n\u0009#new number = x\n\u0009procedure avg(x)\ninitialize sum, n       #static in nature\nsum = sum + x\navg = sum /(++n)     #this gives the new average after adding the new number to the stream\nreturn avg \nend procedure\n\n\u0009#To print average of A[]\n\u0009procedure print_avg (A , x)\ninitialize average = 0\nfor  i = 0 to n \naverage = avg(A[i])\nprint average\nend procedure",
+        "explanation": "1.To find the average, we use the new number and add it to the previous sum. Now divide this by the new total number of elements in the array.\n2.To print, we enter the new number and the input array in the print function which then call the avg() function which gives the average of the new set of numbers. ",
+				"code": [
+					{
+						"language": "c",
+						"code": "#include <stdio.h>\n\nfloat Avg(float prev_avg, int x, int n)\n{\n    return (prev_avg*n + x)/(n+1);\n}\n\nvoid printaverage(float A[], int n)   //for printing\n{\n   float avg = 0;\n   for(int i = 0; i < n; i++)\n   {\n       avg  = Avg(avg, A[i], i);\n       printf(\"Average of %d numbers is %f\\n\", i+1, avg);\n   }\n   return;\n}\n\nint main()\n{\n    float A[] = {10, 25, 30, 45, 50, 65, 70, 85};\n    int n = sizeof(A)/sizeof(A[0]);    //finding total no. of elements\n    printaverage(A, n);\n    return 0;\n}\n"
+          }
+				],
+				"complexity" : ">The time complexity is O(n) as the loop for average printing runs n times where n is total number of elements.\nThe space complexity is O(1) as the extra variables used are sum, n , average."
+            }
+        ]
+    }
+}

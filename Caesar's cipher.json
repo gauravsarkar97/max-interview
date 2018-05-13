@@ -1,0 +1,24 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program to decipher a given input of text.",
+        "description": "In cryptography, a Caesar's cipher, also known as the shift cipher, or Caesar shift, is one of the simplest and most widely known encryption techniques. It is a type of substitution cipher in which each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet.\n\nFor example, for a right shift of 5 :\n\"‘A’\" would be replaced by \"‘F’\" , \"‘B’\" with \"‘G’\" and so on.\n\n You are given a string of text in encrypted form and you are provided with the “CLUE” string. Decipher the given text using the technique.\n\n",
+        "example": "> Sample Input : \"QEB MRXIVZMIA\"\nGiven \"“CLUE”\" = \"“GPYI”\"\n\nSample Output : \"MAX INTERVIEW"\"",
+        "explanation": "Checking the corresponding characters of the clue, we find that ‘C’ corresponds to ‘G’, ‘L’ corresponds to ‘P’, ‘U’ to ‘Y’ and ‘E’ to ‘I’.\nThis is basically a right shift of 4.\n\n",
+        "solutions": [
+            {
+				"topic": "Basic solution",
+				"algorithm": "1)We compare the first character of the given clue string with ‘C’ to determine the step value by which we need to shift.\n2)Scan the given encrypted text and for each character perform the step difference. Now the following three cases can arise which computing the new character of the deciphered text. It may\ni) lie between ‘A’ to ‘Z’\nii) lie to the right of ‘Z’, (in case of any right shift) that is may exceed the 26 alphabets\niii) it may lie to the left of ‘A’ (in case of any left shift)\n\n",
+				"algorithm": "CAESAR_CIPHER(msg[],clue[4])\ninitialize step=0\ninitialize msg.length=0\nstep = (-1) * (clue[0] - ‘C’)   //Calculating the step difference. -1 multiplied\n                         //for left and right shift adjustment \nfor i =	0 to msg.length do:\nif msg[i] = blank_space\ncontinue\n    	if msg[i] + step >= 'A' and msg[i]+step <= 'Z'\nmsg[i] = msg[i]+step\n\n      if msg[i] + step > 'Z’\nmsg[i] = msg[i]+step-'Z'+'A'-1    //if character exceeds Z in\n                             //right shift\nif msg[i] + step < 'A'\n            msg[i] = 'Z' - ('A' - msg[i] - step) + 1  //if character exceeds\n                                           //A for a particular left\n                                           //shift\nend for\nreturn msg\n\n",
+				"code": [
+					{
+						"language": "c",
+						"code": "#include <stdio.h>\n#include <string.h>\nvoid main()\n{\n\u0009char msg[100],ch[5];\n\u0009int step=0;\n\u0009int i,len=0;\n\u0009printf(\"Enter encrypted message: \");\n\u0009gets(msg);\n\u0009printf(\"Enter \\\"CLUE\\\": \");\n\u0009gets(ch);\n\u0009step = (-1)*(ch[0]-'C');\n\u0009len = strlen(msg);\n\u0009printf(\"Decoded message is .....\\n\");\n    for(i=0;i<len;i++)\n    {\n    \u0009if(msg[i]==' ')\n    \u0009{\n    \u0009\u0009printf(\"%c\",msg[i]);\n    \u0009\u0009continue;\n\u0009\u0009}\n    \u0009if(msg[i]+step >= 'A'&&msg[i]+step <='Z')\n            printf(\"%c\",msg[i]+step);\n    \u0009else if(msg[i]+step >'Z')\n            printf(\"%c\",msg[i]+step-'Z'+'A'-1);\n    \u0009else if(msg[i]+step <'A')\n            printf(\"%c\",'Z'-('A'-msg[i]-step) + 1);\n\u0009}\n}"
+                    },
+				],
+				"complexity" : ">This algorithm runs in linear time as there is only one for loop which runs for the entire length of the encrypted text message.\nThus, the time complexity would be __O(n)__, where n is the length of the encrypted string.\n\nThe space complexity is O(1)."
+            },
+        ]
+    }
+}

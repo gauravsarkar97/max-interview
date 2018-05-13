@@ -1,0 +1,31 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program to shuffle a given array.\n",
+        "description": "Given an array with n number of elements, we need to shuffle the array and retrieve a random permutation of the elements of the array.\n",
+        "example": "> For example : If the input array is \"A = {9,8,7,6,5,4,3,2,1}\" one of the possible outputs can be  \"{4,7,5,2,3,1,8,9,6}\". Another possible combination for this same array can be output  \"{9,4,6,7,8,2,1,3,5}.\"\nSimilarly 1 of the various permutations will appear for the same input every time you run.\n",
+        "solutions": [
+            {
+				"topic": "Using the Fisher - Yates algorithm ",
+				"description": "The most efficient way of creating a randomizing function with given elements can happen using Fisher-Yates algorithm.\n\n1. Create programs for swapping 2 integers.\n2. For the function using a loop start from the last element in the array and swap it with any random element picked out from the same array.\n3. The process continues by using array from 0 - n-2 and keep repeating till you reach the first element.\n",
+				"algorithm": "Input = { n elements }\nfor i = n-1 till 0\n	j = a random integer between 0 and i\n	swap a[j] and a[i]\n\n",
+				"code": [
+					{
+						"language": "c++",
+						"code": "#include <stdio.h>\n#include <stdlib.h>\n#include <time.h>\n \n// A function to swap to integers in 2 indices. This will be used in main program\nvoid swap (int *a, int *b)\n{\n    int temp = *a;\n    *a = *b;\n    *b = temp;\n}\n \n// A function to generate a random permutation of the given input array\nvoid randomfunc ( int arry[], int n )\n{\n    // A different seed value so that so as to not get same\n    // result each time we run this program\n    srand (time(NULL) ); // this randomizes and changes the seed value\n \n    // From the last elements travel and swap with another random index //element\n    for (int i = n-1; i > 0; i--)\n    {\n        // Pick a random index between 0 and i\n        int j = rand() % (i+1);\n \n        // Swap elements\n        swap(&arry[i], &arry[j]);\n    }\n}"
+          },
+          {
+            "language": "java",
+            "code": "import java.util.Random;\nimport java.util.Arrays;\npublic class ShuffleRand \n{\n    // A Function to generate a random permutation of input array\n    static void randomfunc( int iarr[], int n)\n    {\n        // To create an object of the Random class\n        Random r = new Random();\n         \n  // beginning from the last elements pick a random element from the array          //and swap them\n        for (int i = n-1; i > 0; i--) {\n             \n            // Pick a random index from 0 to i\n            int j = r.nextInt(i);\n             \n            // Swap array element with the element at random index\n            int swa = iarr[i];\n            iarr[i] = iarr[j];\n            iarr[j] = swa;\n        }\n        // To Print the random array\n        System.out.println(Arrays.toString(iarr));\n    }\n     \n    // Driver Program to test above function\n    public static void main(String[] args) \n    {\n         \n         int[] Element = [9,8,7,6,5,4,3,2,1]\n         int n = Element.length;\n         randomfunc (Element, n);\n    }\n}"
+          },
+        {
+          "language": "python",
+          "code": "import random   # the randomize function for the main program\n \n# Function that generates a random permutation of input\n\ndef randomfunc (inputarray, n):\n    # From the last element of the input array swap one by one. \n    # No  need to run for the first element and this condition is covered by keeping  i > 0\n    for i in range(n-1,0,-1):\n        # A random index between 0 and i\n        j = random.randint(0,i)\n \n        # Swap input array elements\n        inputarray[i],inputarray[j] = inputarray[j],inputarray[i]\n    return inputarray\n \n# Driver program to test above function.\nElements = [9,8,7,6,5,4,3,2,1]\nn = len(Elements)\nprint(randomfunc(Elements, n))"
+        }
+				],
+				"complexity" : ">Time Complexity is __O(n)__ as the number of times the program runs depends on number of elements.\nSpace Complexity is __O(1)__ as extra memory is used for the variable temp.\n"
+            }
+        ]
+    }
+}

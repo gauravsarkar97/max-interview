@@ -1,0 +1,28 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program to convert a binary number to decimal",
+        "description": "Enter a binary number(having base 2). The output should be its equivalent decimal number(base 10) ",
+        "example": "> For Example:\nIf n = \"1000\" then output will be : 8\nIf n = \"100101\" then output will be : 37\n",
+        "solutions": [
+            {
+				"topic": "By adding the new element and taking mean",
+				"description": "How to convert a binary number to decimal?\nWe start with the least significant bit(LSB), that is, the rightmost bit and we multiply it with 2 raised to power i(2^i), i = 0,1,2..... Increasing towards the left.\n",
+				"algorithm": "//input = n\nprocedure binToDec(int n)\ninitialize dec = 0  //to store the decimal number\ninitialize base = 1 //stores base value\nwhile (n) do:\n    digit = n % 10\n    n = n/10\n    dec += digit*base  //multiplying with 2^i\n    base = base*2    //increasing the value of base to get the next higher power\nend while\nreturn dec\nend procedure\n\n",
+        "explanation": "If we have a number n = 100101\nStarting with the LSB : \n1x(2^0) + 0x(2^1) + 1x(2^2) + 0x(2^3) + 0x(2^4) + 1x(2^5)\n = 1 + 0 + 4 + 0 + 0 + 32 = 37\nThus, we get our equivalent decimal number.\n ",
+				"code": [
+					{
+						"language": "c++",
+						"code": "#include<iostream>\nusing namespace std;\n \nint binToDec(int n)\n{\n    int dec = 0;\n \n    // Initializing base value to 1 or 2^0\n    int base = 1;\n    int temp = n;\n    while (temp)\n    {\n        int digit = temp % 10;\n        temp = temp/10;\n         \n        dec += digit*base;\n         \n        base = base*2;\n    }\n    return dec;\n}\n \n\nint main()\n{\n    int num = 1110101;\n    cout<<binToDec(num);\n}\n"
+          },
+          {
+          "language": "java",
+          "code": "import java.io.*;\n \nclass Convert {\n \n    // Function to convert binary to decimal\n    static int binaryToDecimal(int n)\n    {\n        int dec = 0;\n     \n        // Initializing base value to 1 or 2^0\n        int base = 1;\n         while (temp)\n    {\n        int digit = temp % 10;\n        temp = temp/10;\n\n        dec += digit*base;\n\n        base = base*2;\n    }\n    return dec;\n    }\n \n    // Driver program\n    public static void main(String[] args)\n    {\n        int num = 1110101;\n        System.out.println(binaryToDecimal(num));\n    }\n}"
+          }
+				],
+				"complexity" : ">The time complexity is O(n), n being the number of bits in the given binary number.\nThe space complexity is O(1) as some extra variable are used."
+            }
+        ]
+    }
+}

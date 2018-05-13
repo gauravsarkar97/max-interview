@@ -1,0 +1,24 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": " Program to add two polynomials.\n ",
+        "description": "Given 2 polynomials as input. The program should add the two polynomials and give the final polynomial.\n",
+        "example": "> For example :If the input is \"A=[2,4,1]\" and \"B=[1,2,0,5]\" then the output should be \"[3,6,1,5]\" \nHere, A represents coefficients of the polynomial x^2 + 4*x +1*1 and B = 5*x^3+0*x^2+ 2*x+1*1 and the final result will represent C = 5*x^3+ 1*x^2 + 6*x+3\n\n",
+        "solutions": [
+            {
+				"topic": "Using basic addition of co-efficient.\n",
+				"description": "We can directly add the co-efficients of the similar terms for the two polynomials. \n",
+				"algorithm": "procedure Poly(A[], B[], x, y)   // x = size of A/sizeof A[0] , y = size of B/sizeof B[0]\nmax = MAX(x,y)\nint sum[max]\nfor i=0 till x\n	sum[i] = A[i]\nfor j = 0 till y\n	sum[j] = sum[j] + B[j]\nreturn sum\n",
+        "explanation": "1.Create an array sum[] which will be the size of the maximum order of the two polynomials.\n 2.Now copy the value of the first input A into sum.\n3.Start adding every term of the sum with the similar term of B and return the final value.\n\n",
+				"code": [
+					{
+						"language": "c++",
+						"code": "#include <iostream>\nusing namespace std;\n \n// A function that will find the maximum of 2 values\nint max(int m, int n) {  return (m > n)? m: n; }\n \n// A[] will contain coefficients of 1st polynomial of size x and B[] will contain  //coefficients of 2nd  polynomial of size y\n\nint *add(int A[], int B[], int x, int y)\n{\n   int size = max(x, y);\n   int *sum = new int[size];\n \n   // Initialize the sum of polynomial \n   for (int i = 0; i<x; i++)\n     sum[i] = A[i];\n \n   // Summation function \n   for (int i=0; i<y; i++)\n       sum[i] += B[i];\n \n   return sum;\n}\n \n// A function to print the co-efficient with the polynomial polynomial\nvoid printPoly(int poly[], int p)\n{\n    for (int i=0; i<p; i++)\n    {\n       cout << poly[i];\n       if (i != 0)\n        cout << \"x^\" << i ;\n       if (i != p-1)\n       cout << \" + \";\n    }\n}\n \n// Driver program to test above functions\nint main()\n{\n    \n    int P1[] = {2 , 4 , 1};\n \n    int P2[] = {1 , 2 , 0 , 5};\n    int m = sizeof(P1)/sizeof(P1[0]);\n    int n = sizeof(P2)/sizeof(P2[0]);\n \n    int *sum = add(P1, P2, m, n);\n    int size = max(m, n);\n \n    cout << \"\\n the sum is \\n\";\n    printPoly(sum, size);\n \n    return 0;\n}"
+          },
+				],
+				"complexity" : ">Time Complexity is __O(x+y)__ which are the orders of the two input polynomials.\nSpace Complexity is __O(x or y)__ as space occupied by the variables depends on which input has the highest order of the two polynomials.\n"
+            }
+            ]
+            }
+    }

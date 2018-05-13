@@ -1,0 +1,48 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Compute sum of all numbers from 1 to n or sum of n natural numbers.",
+        "description": "Given numbers between 1 to any n as input number, the sum of all the numbers in the sequence needs to be the output.",
+        "example": "> For example : If the input number is 5 , then the output will have the summation as 15.\nIf the input number is 13 , then the output will have the summation as 64.\n",
+        "solutions": [
+            {
+				"topic": "Simple Addition :\n",
+				"description": "Using a loop to add each number to a sum variable.\n",
+				"algorithm": "procedure ADD(n)\ninitialize sum = 0\nwhile n!= 0\nsum += n\nn--\nreturn sum\n\n",
+        "explanation": "1.Use a variable sum to contain the final value.\n2.Add the input number n in a while loop till n is not equal to 0 and do n = n - 1.\n",
+				"code": [
+					{
+						"language": "c++",
+						"code": "#include<bits/stdc++.h>\nusing namespace std;\n \n// A function to find sum of digits in till number x\nint sod(int x)\n{\n    int sum = 0;\n    while (x != 0)\n    {\n        sum += x;\n        x--;\n    }\n    return sum;\n}\n \nint main()\n{\n    int n = 3;\n    cout << \"Sum of digits in numbers from 1 to \" << n << \" is \"\n         << sod(n);\n    return 0;\n}"
+          },
+          {
+          "language": "c#",
+          "code": "using System;\n \npublic class GFG {\n    // A function to compute sum from numbers 1 till n \n    static int sod(int x)\n    {\n        int sum = 0;\n         \n        while (x != 0)\n        {\n            sum += x ;\n            x = x -1 ;\n        }\n         \n        return sum;\n    }\n     \n    public static void Main()\n    {\n        int n = 6;\n         \n        Console.WriteLine(\"Sum of the numbers from\"\n               + \" 1 to \"\n               + n + \" is \"\n                + sod(n));\n    }\n}"
+          },
+          {
+            "language": "java",
+            "code": "import java.io.*;\n \nclass GFG {\n     \n    // To find sum of numbers from 1 to n\n    static int sod(int x)\n    {\n        int sum = 0;\n        while (x != 0)\n        {\n            sum += x ;\n\u0009\u0009x=x-1;\n        }\n        return sum;\n    }\n   \n    public static void main(String args[])\n    {\n        int n = 6;\n        System.out.println(\"Sum of digits from numbers\"\n                          +\" 1 to \" + n + \" is \"\n                          + sod(n));\n    }\n}"
+          },
+          {
+          "language": "python",
+          "code": "def sod(x) :\n    sum = 0\n    while (x != 0) :\n        sum = sum + x \n        x   = x -1\n     \n    return sum\n\n# Driver Program\nn = 6\nprint(\"Sum of digits from numbers 1 to\", n, \"is\", sod(n))"
+          }
+				],
+				"complexity" : ">Time Complexity is __O(n)__ as the loop time depends on the input number.\nSpace Complexity is __O(1)__ as an extra variable is used."
+            },
+            {
+            "topic": "Method 2: Using the formula for summation \n",
+            "description": "The formula for summation of n numbers is n*(n+1)/2 \n\n",
+            "algorithm": "procedure ADD(input)\ninitialize sum = 0\nsum = input * (input+1)\nreturn (sum/2)\n\n",
+            "code": [
+            {
+            "language": "c++",
+            "code": "#include<bits/stdc++.h>\nusing namespace std;\n \n// A function to find sum of digits in till number x\nint add(int x)\n{\n    int sum = 0;\n    sum = (x * (x+1));\n    return (sum/2);\n}\n \nint main()\n{\n    int n = 7;\n    cout << \"Sum of numbers from 1 to \" << n << \" is \"\n         << add(n);\n    return 0;\n}"
+            }
+            ],
+            "complexity": ">Time Complexity is __O(1)__ as no loops are used.\nSpace Complexity is __O(1)__ as an extra variable is used. \n\n"
+            }
+            ],
+            }
+    }

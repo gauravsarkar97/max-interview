@@ -1,0 +1,36 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program to swap all odd and even bits.\n ",
+        "description": "Given an unsigned integer as the input, swap all the odd and even bits of the binary conversion of this number.\n",
+        "example": "> For example :If the input is 5 then the output will be 10.\nWHY?\n Binary of 5 is 00000101 then after swapping it will be 00001010\n\n",
+        "solutions": [
+            {
+				"topic": "Using left and right shift of bits.\n",
+				"description": "By splitting the even and odd bits of the input integer and then right and left shifting the bits we can combine them again to form final number.\n",
+				"algorithm": "procedure SwapBits(input)\nEven = input * 0xAAAAAAAA // To get all even bits\nOdd = input * 0x55555555  // To get all odd bits \nEven >>= 1 // shifting the bits to right by 1 place\nOdd <<=1 // shifting the bits to left by 1 place\nreturn(even or odd)     //This function will combine the number to form final integer\n",
+        "explanation": "1.To get the even bits of input multiply the input by 0xAAAAAAAA. This will mean you multiply using a sequence of repeated 1010 meaning only the even numbers will be present. \n2.Using similar logic to obtain the odd bits multiply input by 0x55555555 => 0101.\n3.Right shift the even numbers to go to their respective odd positions and similarly left switch the odd numbers to reach the even positions.\n4.Combine the two array two to get the final result. \n\n",
+				"code": [
+					{
+						"language": "c",
+						"code": "#include <stdio.h>\n \n// Function \nunsigned int swapBit(unsigned int x)\n{\n    // This obtains all the even bits of the input \n    unsigned int even_bits = x & 0xAAAAAAAA; \n \n    // This obtains all the odd bits of the input\n    unsigned int odd_bits  = x & 0x55555555; \n \n    even_bits >>= 1;  // This is to Right shift even bits to odd positions\n    odd_bits <<= 1;   // This is to Left shift odd bits to even positions \n    return (even_bits | odd_bits); \n}\n \nint main()\n{\n    unsigned int n = 5; // 00000101\n\n    printf(\"%u \", swapBit(n));\n    return 0;\n}"
+          },
+          {
+          "language": "c#",
+          "code": "using System;\n \nclass GFG {\n    static long swapBit(int x)\n    {\n        // This will get all even bits of the input integers\n        long even_bits = x & 0xAAAAAAAA; \n     \n        // This will get all the odd bits of the input integers\n        long odd_bits = x & 0x55555555; \n     \n        // This is to Right shift even bits to odd positions\n        even_bits >>= 1; \n         \n        // This is to Left shift odd bits to even positions\n        odd_bits <<= 1; \n         \n        // This will recombine the even and odd bits forming final integer\n        return (even_bits | odd_bits); \n    }\n     \n    public static void Main()\n    {\n         \n        int x = 5; // 00000101\n   \n        Console.Write(swapBit(x));\n    }\n}"
+          },
+          {
+          "language": "java",
+          "code": "class GFG\n{\n    static int swapBit(int x)\n    {\n        // This will obtain all the even bits of the integer\n        int even_bits = x & 0xAAAAAAAA; \n     \n        // This will obtain all the odd bits of input integer\n        int odd_bits = x & 0x55555555; \n     \n        // This is to Right shift even bits to odd positions\n    \n        even_bits >>= 1; \n         \n        // This is to Left shift odd bits to even positions\n        odd_bits <<= 1; \n         \n        // This combines to give the final output integer.\n        return (even_bits | odd_bits); \n    }\n     \n    public static void main(String[] args)\n    {\n        int x = 5; // 00000101\n        System.out.println(swapBit(x));\n    }\n}"
+          },
+          {
+          "language": "python",
+          "code": "def swapBit(x) :\n     \n    # This will get all the even bits of input integer\n    even_bits = x & 0xAAAAAAAA\n \n    # This will get all the odd bits of input integer\n    odd_bits = x & 0x55555555\n     \n    # This is to Right shift even bits to odd positions\n    even_bits >>= 1\n     \n    # This is to Left shift odd bits to even positions\n    odd_bits <<= 1\n \n    # This is to recombine the even and odd bits to form the final integer\n    return (even_bits | odd_bits) \n\n# Driver program\n# 00000101\nn = 5\n print(swapBit(n))\n"
+          }
+				],
+				"complexity" : ">Time Complexity is __O(1)__ as there are no loops.\nSpace Complexity is __O(1)__ due to the extra variables.\n"
+            }
+            ]
+            }
+    }

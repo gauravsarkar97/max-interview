@@ -1,0 +1,28 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program to convert a decimal number to binary",
+        "description": "Enter a decimal number(having base 10). The output should be its equivalent binary number(base 2)\n",
+        "example": "> For Example:\nIf n = \"8\" then output will be : \"1000\"\nIf n = 37 then output will be : \"100101\"\n",
+        "solutions": [
+            {
+				"topic": "Dividing by 2",
+				"description": "How to convert a decimal number to binary?\nWe start dividing the number by 2. At weach step we store the remainders(either 0 or 1).Finally when we reach zero, we stop the division process and our required binary number is the remainders in reverse order(starting from the one which we obtained at the last to the one that we obtained at first).\n",
+				"algorithm": "procedure decToBin(int n)  //n = Input\n    // array to store binary number\n    initialize binNum[] = 0   //array to store remainders\n    // counter for binary array\n    initialize i = 0\n    while (n > 0) do:\n        binNum[i] = n % 2\n        n = n / 2\n        i++\n    end while\n print binNum[].reverse\n\n",
+        "explanation": "1. We store the remainder when the number is divided by 2 in an array.\n2. We divide the number by 2.\n3. We repeat the above two steps until the number is greater than zero.\n4. Print the array in reverse order to obtain the equivalent binary number.\n ",
+				"code": [
+					{
+						"language": "c++",
+						"code": "#include <iostream>\nusing namespace std;\nvoid decToBin(int n)\n{\n    // array to store binary number\n    int binNum[1000];\n \n    // counter\n    int i = 0;\n    while (n > 0) \n    {\n        binNum[i] = n % 2;\n        n = n / 2;\n        i++;\n    }\n \n    // printing array in reverse order\n    for (int j = i - 1; j >= 0; j--)\n        cout<<binNum[j];\n}\n \nint main()\n{\n    int n = 34;\n    decToBin(n);\n    return 0;\n}"
+          },
+          {
+          "language": "java",
+          "code": "import java.io.*;\n \nclass GFG \n{\n    // function to convert decimal to binary\n    static void decToBin(int n)\n    {\n        // array to store binary number\n        int[] binNum = new int[1000];\n  \n        // counter \n        int i = 0;\n        while (n > 0) \n        {\n            binNum[i] = n % 2;\n            n = n / 2;\n            i++;\n        }\n  \n        // printing array in reverse order\n        for (int j = i - 1; j >= 0; j--)\n            System.out.print(binNum[j]);\n    }\n     \n    public static void main (String[] args) \n    {\n        int n = 38;\n        decToBin(n);\n    }\n}"
+          }
+				],
+				"complexity" : ">The time complexity is approximately O(n/4), that is linear where n is the input decimal number. The loops for as many times as the division by 2 does not give result as zero.\nThe space complexity is O(n) as extra array is used for storing."
+            }
+        ]
+    }
+}

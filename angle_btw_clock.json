@@ -1,0 +1,36 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program to find the angle between hour hand and minute hand.",
+        "description": "Given the time, the function should return the angle between hour and minute hand of the clock when represented.\n",
+        "example": ">If the input time is 3:45 then the output will be 158 degrees.\nIf the input time is 9:40 then the output will be  50 degrees.\n",
+        "solutions": [
+            {
+				"topic": "Using difference between hour and minute ",
+				"description": "We calculate the angle shift for every minute and hour shift and use that for that final entered time.\n",
+				"algorithm": "function(hour,minute)\n// To check if the time if valid \nif (hour <0 || minute < 0 || hour >12 || minute > 60)\n        report \"The time entered is invalid\"\n// We use values from 0-11 hours and 0-59 seconds format \n    if (hour == 12) \n        hour = 0\n    if minute equals 60\n  minute = 0\n // To find the angle between hour and minute hands\n    hour_angle = 0.5*(hour*60 + minute)  // Shift in hour for every hour\n    minute_angle = 6*minute   //Shift in angle for every minute\n\n // Find the difference between two angles\n    angle = absolute value of(hour_angle - minute_angle)\n\n // Return the smallest of the 2 possible angles\n    result = minimum of (360-angle, angle)\nreturn result\n\n",
+				"explanation": "1.Declare a utility function to find minimum of 2 numbers.\n2.In the main function check if the time entered is in valid format. \n3.Calculate angle for the hour shift using the formula 0.5 * (hour * 60 + minute) as we have 0.5 shift for each changing period. Similarly calculate the angle shift for minute with 6 degree shift for each minute. \n4.Find the difference between the 2 angles (absolute value). Now find the minimum of 2 angles between 0-360 which will be the result.\n",
+				"code": [
+					{
+						"language": "c",
+						"code": "#include <stdio.h>\n#include <stdlib.h>\n \n// Utility function \u2013 find the smallest of 2 numbers\nint minnum(int a, int b) { return (a < b)? x: y; }\n \nint findangle(double hour, double minute)\n{\n    \n    if (hour <0 || minute < 0 || hour >12 || minute > 60)\n        printf(\"The time entered is invalid\");\n \n    if (hour == 12) \n        hour = 0;\n    if (minute == 60) \n  minute = 0;\n \n    // To find the angle \n    int hour_angle = 0.5*(hour*60 + minute);\n    int minute_angle = 6*minute;   \n \n    // Find the difference between two angles\n    int angle = abs(hour_angle - minute_angle);\n    result = minnum(360-angle, angle);\n \n    return result;\n}\n \nint main()\n{\n    printf(\"%d n\", findangle(3, 45));\n    return 0;\n}"
+                    },
+                    {
+                    "language": "c#",
+                    "code": "using System;\n \nclass GFG {\n     \n    static int findangle(double hour, double minute)\n    {\n        if (hour < 0 || minute < 0 || \n            hour > 12 || minute > 60)\n            Console.Write(\"The input is invalid\");\n \n        if (hour == 12)\n            hour = 0;\n             \n        if (minute == 60) \n            minute = 0;\n \n        // Calculate the angles \n        int hour_angle = (int)(0.5 * (hour * 60 + minute));\n        int minute_angle = (int)(6 * minute);\n \n        // Find the difference \n        int angle = Math.Abs(hour_angle - minute_angle);\n \n        // smaller of angle \n        int result = Math.Min(360 - angle, angle);\n \n        return result;\n    }\n     \n    // Driver code\n    public static void Main () \n    {\n        Console.WriteLine(calcAngle(9, 40));\n    }\n}\n "
+                    },
+                    {
+                        "language": "java",
+                        "code": "import java.io.*;\n \nclass GFG \n{\n    static int findangle(double hour, double minute)\n    {\n        // validate the input\n        if (hour <0 || minute < 0 || hour >12 || minute > 60)\n            System.out.println(\"the time is invalid\");\n \n        if (h == 12)\n            h = 0;\n        if (m == 60) \n            m = 0;\n \n        // Calculate the angles \n        int hour_angle = (int)(0.5 * (hour*60 + minute));\n        int minute_angle = (int)(6*minute);\n \n        // Find difference between angles\n        int angle = Math.abs(hour_angle - minute_angle);\n \n        // smaller angle of two possible angles\n        int result = Math.min(360-angle, angle);\n \n        return result;\n    }\n     \n    public static void main (String[] args) \n    {\n        System.out.println(findangle(9, 40)+\" degree\");\n    }\n}"
+                    },
+                    {
+                        "language": "python",
+                        "code": "def findangle(hour,minute):\n         \n        # validate the input\n        if (hour < 0 or minute < 0 or hour > 12 or minute > 60):\n            print('The time entered is invalid')\n         \n        if (hour == 12):\n            hour = 0\n        if (minute == 60):\n            minute = 0\n         \n        # Calculate the angles \n        hour_angle = 0.5 * (hour * 60 + minute)\n        minute_angle = 6 * minute\n         \n        # Find difference between the angles\n        angle = abs(hour_angle - minute_angle)\n         \n        # Return the smaller of the angle \n        result = min(360 - angle, angle)\n         \n        return result\n \n# Driver program  \nprint('Angle ', findangle(3,45))\n "
+                    }
+				],
+				"complexity" : ">Time Complexity is __O(1)__ as there are no loops used.\nSpace Complexity is __O(1)__ as there are extra variables used.\n"
+            },
+        ]
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program to check if a number is a multiple of 3.",
+        "description": "Given a number n, find if n is a multiple of 3 or not.\nDisplay a message accordingly.",
+        "example": "> For Example:\nFor an Input : 463  the Output will be : It is not a multiple of number 3\nFor an input : 45 the Output will be : It is a multiple of 3\nFor input : -45 the output will be : it is a multiple of 3\n",
+        "solutions": [
+            {
+				"topic": "Method 1 : Using divisibilty",
+				"description": "Simply divide the number by 3 and check if the remainder is 0 or not.",
+				"algorithm": "#input x\nif x % 3 = 0\n     print “Multiple of 3”\nelse\n    print “Not a multiple of 3”",
+				"explanation": "The time complexity is __O(1)__ as the process runs only once.\nThe space complexity is __O(1)__ as we do not use any storage space.",
+				"code": [
+					{
+						"language": "c++",
+						"code": "#include<iostream>\nusing namespace std;\nint main(void)\n{\n    int x = 33;\n\n    if(x <0)        // to convert if input is negative\n      { x= ((-1) * x) ;\n       } else if (x==0)     // if number if 0\n       {cout<< \"1\" ;\n       } else if(x ==1)       // if the number if 1\n       {cout<< \"0\" ;\n        }else\n    {\n    if ((x % 3) == 0)   // If the input is properly divisible by 3\n        cout <<x<< \" is a multiple of 3\" << endl;\n    else\n        cout <<x<< \" is not a multiple of 3\" << endl;\n    }\n    return 0;\n}\n"
+                    },
+				],
+				"complexity" : ">The time complexity is O(1) as the process runs only once.\nThe space complexity is O(1) as we do not use any storage space."
+            },
+            {
+              	"topic": "Method 2 : Using binary representation",
+                "description": "We can find whether a number is a multiple of 3 or not using binary representation of the number. If the difference of odd set bits and even set bits of the number’s binary representation is a multiple of 3 then the number is a multiple of 3.\n\n1.We convert the number to positive if it is negative. Return 1 if the number is 0 and return 1 if the number is 0.\n2.We use a loop check if the rightmost bit is set and if so increment odd count and shift by 1 bit.\n3.We repeat the same for the current bit and if it is set increment even count and shift by 1 bit and go back to step 2.\n4.Finally we find the difference of odd count and even count and check if this is a multiple of 3.",
+                "algorithm": "#Input x\ninitialize odd_count =0\ninitialize even-count=0\nmultiple(x)\nif  x < 0\n	x = (-1) * x\nif x = 0\n	return 0\nif x = 1	\n	return 1\nwhile(x) \n	if n &1      # check if rightmost bit is at odd position is equal to 1\n		odd_count = odd_count + 1\n	n = n >> 1     /#Shift to next bit\n	if n &1      #if rightmost bit at even position is equal to 1\n		even_count = even_count + 1\n	n = n >> 1      #Shift to next bit",
+                "explanation": "The time taken by this process will be logarithmic.",
+                "code": [
+                {
+                "language": "c++",
+                "code": "#include<bits/stdc++.h>\nusing namespace std;\n \nint Multiple(int n)\n{\n    int odd_count = 0;\n    int even_count = 0;\n \n    if(n < 0) n = -n;\n    if(n == 0) return 1;\n    if(n == 1) return 0;\n \n    while(n)\n    {\n        if(n & 1)       // If odd bit is set then\n        odd_count++;\n        n = n>>1;\n\n        if(n & 1)        // If even bit is set then\n            even_count++;\n        n = n>>1;\n    }\n    return Multiple(abs(odd_count - even_count));  // if the diffrence is a multiple of 3 so is the number\n}\n\nint main()\n{\n    int num = 696;\n    if (Multiple(num)) \n        cout<<\"It is a multiple of 3\";\n    else\n        cout<<\"It is NOT a multiple of 3\";\n    return 0;\n}"
+                },
+                {
+                "language": "java",
+                "code": "import java.lang.*;\nimport java.util.*;\n \nclass Checkmultiple\n{\n static int Multiple(int n)\n  {\n    int odd_count = 0;\n    int even_count = 0;\n \n    if(n < 0) n = -n;\n    if(n == 0) return 1;\n    if(n == 1) return 0;\n \n    while(n != 0)\n    {\n        if((n & 1) != 0 )  // If odd bit is set\n        odd_count++;\n        n = n>>1;\n \n        if((n & 1) != 0)         // If even bit is set \n            even_count++;\n \n        n = n>>1;\n    }\n    return Multiple(Math.abs(odd_count - even_count)); // if the diffrence is a multiple of 3 so is the number\n}\n     \n    public static void main(String[] args) \n    {\n    int num =66;\n \n    if (Multiple(num) != 0) \n        System.out.println(num + \" is multiple of 3\");\n    else\n        System.out.println(num + \" is not a multiple of 3\");\n}\n}"
+              },
+                {
+                  "language": "python",
+                  "code": "# Function to check if n is a multiple of 3\ndef Multiple(n):\n \n    odd_count = 0\n    even_count = 0\n\n    if(n < 0): \n        n = -n\n    if(n == 0):\n        return 1\n    if(n == 1): \n        return 0\n \n    while(n):\n         \n        # If odd bit is set \n        if(n & 1): \n            odd_count += 1\n        n = n >> 1\n \n        # If even bit is set\n        if(n & 1):\n            even_count += 1\n        n = n >> 1\n \n    return isMultipleOf3(abs(odd_count - even_count))     # if diffrence is a multiple of 3 \n \n\nnum = 33\nif (Multiple(num)): \n    print(num, 'is multiple of 3')\nelse:\n    print(num, 'is not a multiple of 3')"
+                }
+                ],
+                "complexity": ">The time complexity is __O(log n)__ as the time taken will increase logarithmically based on the value of input.\nThe space complexity is __O(1)__ where extra space is taken only by odd and even count variables."
+            }
+
+        ]
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "program to find the parity of an unsigned integer.\n ",
+        "description": "Given an unsigned integer number, the program should calculate the parity of this integer.\n\nWhat do you mean by Parity of an integer? \nThere are 2 types of parity which is odd parity or even parity. Parity refers to the number of set bits in the integer. Now for an odd parity the total number of set bits should be odd whereas for even parity the total set bits should be even.\n",
+        "example": "> For example : If the input is n = 13 (1101) then parity is \"ODD\". \nIf the input is n = 10 (1010) then parity is \"EVEN\".\n",
+        "solutions": [
+            {
+				"topic": "Using loop to calculate total set bits:\n",
+				"description": "By using a loop for when the input is not 0, we unset one of the bits which is 1 and invert the parity.\n",
+				"algorithm": "procedure PARITY(input)\nparity = 0\nwhile(input)\n        parity = !parity    // This will give the parity count for this input \ninput = input & (input -1) \nreturn parity\n",
+        "explanation": "1.Keep the parity as 0.\n2.In a loop , while input is not equal to 0 , a. Invert the parity and b. unset the rightmost set bit using n = n & (n-1)\n3.Return the parity value\n\n",
+				"code": [
+					{
+						"language": "c",
+						"code": "# include <stdio.h>\n# define  bool int\n \nbool Parity(unsigned int num)\n{\n    bool parityval = 0;\n    while (num)\n    {\n        parityval = !parityval;\n        num  = num & (num - 1);\n    }        \n    return parityval;\n}\n \nint main()\n{\n    unsigned int n = 4;\n    printf(\"Parity of the input number is %s\", (Parity(n)? \"odd\": \"even\"));\n    getchar();\n    return 0;\n}"
+          },
+          {
+            "language": "java",
+            "code": "import java.util.*;\nimport java.lang.*;\nimport java.io.*;\nimport java.math.BigInteger;\n \nclass GFG\n {\n    static boolean Parity(int num)\n    {\n        boolean parityval = false;\n        while(num != 0)\n        {\n            parityval = !parityval;\n            num = num & (num-1);\n        }\n        return parityval;\n         \n    }\n     \n    public static void main (String[] args)\n    {\n        int n = 4;\n        System.out.println(\"Parity of the input number is +(getParity(n)? \"odd\": \"even\")); \n    }\n}"
+          },
+          {
+          "language": "python",
+          "code": "def Parity( num ):\n    parityval = 0\n    while num:\n        parityval = ~parityval\n        num = num & (num - 1)\n    return parityval\n \n# Driver program \nn = 4\nprint (\"Parity of the input number = \",( \"odd\" if Parity(n) else \"even\"))\n\n\nAdd Comment"
+          }
+				],
+				"complexity" : ">Time Complexity is __O(log n)__ is the worst case complexity. It is proportional to the number of set bits in the input.\nSpace Complexity is __O(1)__ as the extra variable used is parity. \n"
+            }
+            ]
+            }
+    }

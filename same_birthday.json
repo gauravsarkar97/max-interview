@@ -1,0 +1,35 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Birthday Paradox",
+        "description": "In a given room what should be the number of people to make sure that the given probability of two people in the same room sharing the same birthday.",
+        "explanation": "A given year there are 366 days including that in case of a leap year. Now if in a given room 2 people should have the same birthday and the probability of the same happening is 100 % in that case the total number of people who need to be present in the room must be 367.\nNow if we gave the probability of finding what should be the ideal number of people for this to be true.\n",
+        "example": "> If the input is 50% then the output should be 23.",
+        "solutions": [
+            {
+				"topic": "Using the generalized formula",
+				"description": "We arrive at a general formula for any given percentage for finding 2 people in a room with the same birthday. \n\nLet us assume the probability of finding 2 people in a room with same birthdays is P(samebday) which will be 1- P(diffrentbday).\nNow, P(differentbday)= 1*(364/365)*(363/365)*….(1-(n-1)/365)\n\n
+How do we arrive at this equation :\nTaking 1 person at a time the probability of the 1st persons birthday will be 365/365 days ( any day of the year ). \n\nNow the second person will have 364 of 365 days ( as the persons birthday has to be different from the previous one).\nSimilarly the third will have 363 of 365 days (leaving the birthdays of the first 2)\n\nWe apply the Taylor series to evaluate the above expression and arrive at :\n\nn= √(2* 365 * ln(1/1-P(samebday))\n\n",
+				"algorithm": "Function (p(samebday))\n    Return ceil(sqrt(2* 365 * ln(1/1-P(samebday))\n\n",
+				"explanation": "1.The input for the function will be the probability of finding two people with the same birthday.\n2.We use this in the generalized formula for the answer.\n\n",
+				"code": [
+					{
+						"language": "c++",
+						"code": "#include <cmath>\n#include <iostream>\nusing namespace std;\n \n// Returns the approximate number of people to be present on a room for //having the same birthday for a given probability ip \n\nint sbday(double ip)\n{\n    return ceil(sqrt(2*365*log(1/(1-ip))));\n}\n \nint main()\n{\nf= 0.50\ncout <<\u201D The number of people to be present for the given probability is \u201C ; \ncout<< sbday(f);\n}"
+                    },
+                    {
+                        "language": "java",
+                        "code": "class GFG {\n     \n  // Returns the approximate number of people to be present on a room //for having the same birthday for a given probability ip \n    static double sbday(double ip) {\n         \n        return Math.ceil(Math.sqrt(2 * \n            365 * Math.log(1 / (1 - ip))));\n    }\n     \n    public static void main(String[] args) \n    { \n        System.out.println(find(0.50)); \n    }\n}"
+                    },
+                    {
+                        "language": "python",
+                        "code": "import math\n \n#  Returns the approximate number of people to be present on a room for #having the same birthday for a given probability ip \ndef sbday( ip ):\n    return math.ceil(math.sqrt(2 * 365 *\n                     math.log(1/(1-ip))));\n \n# Driver Code\nprint(find(0.50))"
+                    }
+				],
+				"complexity" : ">Time Complexity is __O(1)__ as there are no loops for a given probability.\nSpace Complexity is __O(1)__ as there are no extra variables.\n",
+        "reference": "The detailed steps for arriving at the generalized formula is available at the link given below.\n\"https://en.wikipedia.org/wiki/Birthday_problem\"\n\n"
+            },
+        ]
+    }
+}

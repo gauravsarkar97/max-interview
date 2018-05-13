@@ -1,0 +1,34 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program to rotate an array by 1 in the clockwise direction.",
+        "description": "Suppose we have an array A[] = { 2 , 4 , 6 , 8 , 10} and we want to rotate this array in the clockwise direction by a step of 1.
+This means we go on shifting the array elements one-by-one, one step to the right. When we reach the last element we simply move it to the first position.
+So the rotated array X[] = {10 , 2 , 4 , 6 , 8}.",
+        "example": "> Let an array be A[] = {7 , 8 , 9 , 10} \n\n> Sample Output should be {10, 7 , 8 , 9}",
+        "solutions": [
+            {
+				"topic": "Basic solution",
+				"description": "The first thing that comes to our mind is to use a temporary array for storing the elements from the 2nd position(in the temporary array) and to store the last element(of original array) in the first position of the temporary array. Although correct, this method uses up an extra O(N) space , N being the length of the array. So this method is not very space efficient. Thus we need an algorithm which is both space and time efficient to solve the problem.",
+				"algorithm": "#Inputs\n#Array A[] , size n\nrotate(A,n)\ninitialize t = A[n-1]   #storing last element in t\nfor i = n-1 down to 0    #running loop backwards\nA[i] = A[i-1]        #Shifting the array by 1 step\nend for\nA[0] = t              #replacing first element with t",
+				"explanation": "The time complexity is linear, that is, __O(n)__ as we are using only one loop. The space complexity is O(1), as we have used just a single extra variable and not an array for storing.",
+				"code": [
+					{
+						"language": "c",
+						"code": "#include <stdio.h>\n\nvoid rotate(int A[], int n)\n{\n   int t = A[n-1], i;\n   for (i = n-1; i > 0; i--)\n      A[i] = A[i-1];\n   A[0] = t;\n}\n\nint main()\n{\n    int n;\n    printf(\"Enter the number of elements in your array:\\n\");\n    scanf(\"%d\",&n);\n    int A[n],i;\n    printf(\"Enter the elements of your array:\\n\");\n     for (i = 0; i < n; i++)\n        scanf(\"%d\",&A[i]);\n\n    printf(\"\\n\\nInput array is\\n\");\n    for (i = 0; i < n; i++)\n        printf(\"%d \", A[i]);\n\n    rotate(A, n);\n\n    printf(\"\\nThe rotated array is : \\n\");\n    for (i = 0; i < n; i++)\n        printf(\"%d \", A[i]);\n\n    return 0;\n}"
+                    },
+                    {
+                        "language": "java",
+                        "code": "import java.util.Arrays;\n \npublic class Arrayrotation\n{\n    static int A[] = new int[]{2, 4, 6, 7, 9, 11, 15};\n    static void rotate()\n    {\n       int t = A[A.length-1], i;       //A.length gives the number of elements in A[]\n       for (i = A.length-1; i > 0; i--)\n          A[i] = A[i-1];\n       A[0] = t;\n    }\n     \n    public static void main(String[] args) \n    {\n        System.out.println(\"Input Array is : \");\n        System.out.println(Arrays.toString(A));\n        rotate();   //calling function rorate()\n        \n        System.out.println(\"The rotated Array is : \");\n        System.out.println(Arrays.toString(A));\n    }\n}"
+                    },
+                    {
+                        "language": "python",
+                        "code": ""
+                    }
+				],
+				"complexity" : ">The time complexity is __O(N)__ as we are using only one loop.\n\n>The space complexity is __O(1)__ "
+            },
+        ]
+    }
+}

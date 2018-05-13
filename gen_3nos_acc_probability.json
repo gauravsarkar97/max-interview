@@ -1,0 +1,25 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Program that generates one of 3 numbers according to given probabilities.",
+        "description": "Given the probabilities for appearance of three numbers the function should generate the numbers based on this data.\n",
+        "example": "> If input number are 1,7,9 and their probabilities are 40%, 32% and 28% then the output may be 1 (with 40% probability).\n",
+        "solutions": [
+            {
+				"topic": "Using probability properties.",
+				"description": "We know the sum of the probabilities of the three number need to be ap+bp+cp =100 .\n",
+				"algorithm": "function(int a, int b, int c, int ap, int bp, int cp)\n// To generate a random number between 1 and 100
+        initialize num = rand(1, 100)\n// if num is smaller than ap  - Probability will be ap/100\nif num <= ap\nreturn a\n//Case :When between ap and ap+bp – Probability will be bp/100 \nif num <= (ap+bp)\nreturn b\n// Case : When between ap+ bp and 100 - Probability will be cp/100 \nelse    return c\n\n",
+"explanation": "1.First we generate a random number between 1- 100 and the probability of each of these is 1/ 100.\n2.Now this random number \na)It is smaller or equal to the probability of ap/100 \nb)It is greater than ap or equal to ap+bp with bp/ 100 \nc)It is greater than ap + bp) and are smaller than or equal to sum of ap + bp + cp) with a probability cp/100\n\n ",
+				"code": [
+					{
+						"language": "c",
+						"code": "// Function to generate 3 numbers based on given probability\nint numprob(int a, int b, int c, int ap, int bp, int cp)\n{\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 \n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0// This will generate a random number between 1 and 100\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0int num = rand(1, 100);\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0// if the generated number is smaller than ap with probability ap/100\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0if (num <= ap)\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0return a;\n\u00A0\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0//Case :When greater than ap and smaller than or equal to ap+bp \n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0// with probability bp/100 \n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0if (num <= (ap+bp))\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0return b;\n\u00A0\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0// Case : when greater than ap+ bp and smaller than or equal to 100 \n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0// with probability cp/100 \n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0else\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0return c;\n}\n\nint main()\n{\nx=1;\ny=7;\nz=9;\nxp=40;\nyp=32;\nzp=28;\nnumprob(x,y,z,xp,yp,zp);\nreturn 0;\n}"
+                    },
+				],
+				"complexity" : ">Time Complexity is __O(1)__ as there are no loops.\nSpace Complexity is __O(1)__ as an extra variable num is used here in the function.\n"
+            },
+        ]
+    }
+}

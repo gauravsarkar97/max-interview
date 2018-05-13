@@ -1,0 +1,45 @@
+{
+    "data":{
+        "slug": "",
+        "code": "",
+        "topic": "Searching an element in a sorted Matrix",
+        "description": "You are given an nXn matrix of integers, which is sorted both row-wise and column wise. Find the position of the an element x in the matrix and print it. If not found, print Element not found",
+        "example": "> For Example:\n1. Let A[4][4] = { {10, 20, 30, 40},\n                   {15, 25, 35, 45},\n                   {27, 29, 37, 48},\n                   {32, 33, 39, 50}};\nx = 29\nOutput : Found at (2, 1)\n2. Let A[4][4] = { {10, 20, 30, 40},\n                   {15, 25, 35, 45},\n                   {27, 29, 37, 48},\n                   {32, 33, 39, 50}};\nx = 100\nOutput : Element not found",
+        "solutions": [
+            {
+				"topic": "Method 1- Brute Force",
+				"description": "The idea is to search for the element x in the matrix one by one.",
+				"algorithm": "#let matrix be\nA[4][4] = { {10, 20, 30, 40},\n{15, 25, 35, 45},\n{27, 29, 37, 48},\n{32, 33, 39, 50}};\n#the element to be searched\nand x = 29\n#iterate through the rows\nwhile(i<n)\n#iterate through the columns\nwhile(j<n)\n#search in matrix one by one\nif(A[i][j]==x)\nPrint Found at (i,j)\nreturn 1\nend-while\nPrint Element not found\nreturn 0",
+				"explanation": "We search for the element one by one in the matrix until our desired element is found.\n",
+				"code": [
+					{
+						"language": "c",
+						"code": "#include<stdio.h>\n/* Searches the element x in A[][]. If the element is found, then prints\nits position and returns true, otherwise prints \"not found\" and returns\nfalse */\nint search(int A[4][4], int n, int x)\n{\nfor(int i=0; i<n; ++i)\n{\nfor(int j=0; j<n; ++j)\n{\nif ( A[i][j] == x )\n{\nprintf(\"Found at %d, %d\", i, j);\nreturn 1;\n}\n}\n}\nprintf(\"Element not found\");\nreturn 0;\n}\nint main()\n{\nint A[4][4] = { {10, 20, 30, 40},\n{15, 25, 35, 45},\n{27, 29, 37, 48},\n{32, 33, 39, 50},\n};\nsearch(A, 4, 29);\nreturn 0;\n}"
+                    },
+          {
+            "language": "java",
+            "code": "class MatrixSearch{\n/* Searches the element x in A[][]. If the element is found, then prints\nits position and returns true, otherwise prints \"not found\" and returns\nfalse */\nprivate static void search(int[][] A, int n, int x) {\nfor(int i=0; i<n; ++i)\n{\nfor(int j=0; j<n; ++j)\n{\nif ( A[i][j] == x )\n{\nSystem.out.println(\"Found at \"+i+\" \"+ j);\nreturn;\n}\n}\n}\nSystem.out.println(\"Element not found\");\nreturn;\n}\npublic static void main(String[] args) {\nint A[][] = { {10, 20, 30, 40},\n{15, 25, 35, 45},\n{27, 29, 37, 48},\n{32, 33, 39, 50} };\nsearch(A, 4, 29);\n}\n}"
+          }
+				],
+				"complexity" : ">Time Complexity: __O(n^2)__ for the nested loops.\nSpace Complexity: __O(1)__ no extra space used\n"
+            },
+            {
+              	"topic": "Method 2 : Comparing and Searching",
+                "description": "The idea is to compare the element with the top right element, if it is equal then return its position, otherwise move down and repeat the procedure. If element not found, return false.",
+                "algorithm": "#let matrix be\nA[4][4] = { {10, 20, 30, 40},\n{15, 25, 35, 45},\n{27, 29, 37, 48},\n{32, 33, 39, 50}};\n#the element to be searched\nand x = 29\n#initially setting indices\ni=0, j=n-1\n#Comparing and searching the element\nwhile(i<n && j>=0)\nif(A[i][j]==x)\nPrint \"Found at (i, j)\"\nreturn\nend-if\nif(A[i][j]>x)\n#moving left in the matrix\nj--\nend-if\nelse if(A[i][j]<x)\n#moving down in the matrix\ni++\nend-else if\nend-while\nPrint \"Element not found\"\nreturn 0\n",
+                "code": [
+                {
+                "language": "c",
+                "code": "#include<stdio.h>\n/* Searches the element x in A[][]. If the element is found, then prints\nits position and returns true, otherwise prints \"not found\" and returns\nfalse */\nint search(int A[4][4], int n, int x)\n{\nint i = 0, j = n-1; //intially setting the indices\nwhile ( i < n && j >= 0 )\n{\nif ( A[i][j] == x )\n{\nprintf(\"n Found at %d, %d\", i, j);\nreturn 1;\n}\nif ( A[i][j] > x )\nj--;\nelse // if A[i][j] < x\ni++;\n}\nprintf(\"n Element not found\");\nreturn 0; // if ( i==n || j== -1 )\n}\nint main()\n{\nint A[4][4] = { {10, 20, 30, 40},\n{15, 25, 35, 45},\n{27, 29, 37, 48},\n{32, 33, 39, 50},\n};\nsearch(A, 4, 29);\nreturn 0;\n}"
+                },
+                {
+                "language": "java",
+                "code": "class SearchMatrix{\n\nprivate static void search(int[][] A, int n, int x) {\nint i = 0, j = n-1; //Initially setting the indices\nwhile ( i < n && j >= 0 )\n{\nif ( A[i][j] == x )\n{\nSystem.out.print(\"Found at \"+ i + \" \" + j);\nreturn;\n}\nif ( A[i][j] > x )\nj--;\nelse // if A[i][j] < x\ni++;\n}\nSystem.out.print(\"Element not found\");\nreturn; // if ( i==n || j== -1 )\n}\npublic static void main(String[] args) {\nint A[][] = { {10, 20, 30, 40},\n{15, 25, 35, 45},\n{27, 29, 37, 48},\n{32, 33, 39, 50} };\nsearch(A, 4, 29);\n}\n}"
+              },
+                ],
+                "complexity": ">Time-Complexity: __O(n)__ as compared and searched.\nSpace-Complexity: __O(1)__ no extra space is used\n"
+            }
+
+        ]
+    }
+}
